@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorateur Mondial de Déforestation - GFW</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="core/global.css">
+    <link rel="stylesheet" href="components/zone_carte/carte.css">
+    <link rel="stylesheet" href="components/widget_1/evolution.css">
+    <link rel="stylesheet" href="components/widget_2/carbone.css">
+    <link rel="stylesheet" href="components/widget_3/impact.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+
+    <script src="core/api.js" defer></script>
+    <script src="components/zone_carte/carte.js" defer></script>
+    <script src="components/widget_1/evolution.js" defer></script>
+    <script src="components/widget_2/carbone.js" defer></script>
+    <script src="components/widget_3/impact.js" defer></script>
+    <script src="core/main.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="assets/img/logo.png" alt="Logo" class="logo">
+            <h1>Explorateur Mondial de Déforestation (GFW)</h1>
+        </div>
+        <div class="alerts-badge">
+            🔔 Alertes : <span id="alerts-count">0</span>
+        </div>
+    </header>
+
+    <main class="dashboard-grid">
+        <section class="map-section">
+            <div id="maCarte"></div>
+        </section>
+
+        <aside class="widgets-sidebar">
+            <div class="widget-container" id="widget-evolution">
+                <h3>📊 Évolution Temporelle</h3>
+                <canvas id="monGraphiqueEvolution"></canvas>
+            </div>
+
+            <div class="widget-container" id="widget-carbone">
+                <h3>☁️ Dette Carbone</h3>
+                <div id="compteur-carbone" class="counter">0</div>
+                <p>Tonnes d'éq. CO2 générées</p>
+            </div>
+
+            <div class="widget-container" id="widget-impact">
+                <h3>⚽ Impact Concret</h3>
+                <div id="compteur-impact" class="counter">0</div>
+                <p>Terrains de football détruits</p>
+            </div>
+        </aside>
+    </main>
+
+</body>
+</html>
