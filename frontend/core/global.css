@@ -30,7 +30,7 @@
     --panel-wood: #3A4F41;      /* Fond des widgets : Vert plus un petit peu clair */
     --text-cream: #F4F1DE;      /* Texte : Blanc pas très blanc */
     --accent-leaf: #81B29A;     /* Couleur d'accentuation (titres, icônes) */
-    --accent-alert: #E07A5F;    /* Terracotta(Style minecraft) pour les alertes */
+    --accent-alert: #E07A5F;    /* terracotta(comme sur minecraft) pour les alertes */
     
     --spacing-layout: 24px;     /* Espacement entre les boîtes */
     --radius-cozy: 20px;        /* Bords très arrondis */
@@ -118,10 +118,11 @@ header h1 {
     font-size: 1.1rem;
 }
 
-/* style temporaire pour visualiser la zone de la carte avant d'intégrer Leaflet */
+/* style de la carte */
 #maCarte {
     width: 100%;
     height: 100%;
     border-radius: calc(var(--radius-cozy) - 4px); 
-    background-color: rgba(0, 0, 0, 0.15); 
+    /* background-color: rgba(0, 0, 0, 0.15);  juste pour avoir quelque chose de fond au cas où */
+    z-index: 1; /* pour qu'elle reste bien au fond */
 }
