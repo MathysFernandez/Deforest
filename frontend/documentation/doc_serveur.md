@@ -57,6 +57,10 @@ Dans le terminal connecté au serveur, lancez cette commande pour déployer les 
 
 `sudo cp -r ~/deforest/frontend/* /var/www/html/`
 
+# 5. Afficher le site 
+
+http://192.168.110.132
+
 
 
 
