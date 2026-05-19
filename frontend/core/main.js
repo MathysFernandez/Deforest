@@ -6,11 +6,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Si des données, les afficher sur la carte
     if (alertesDeforestation.length > 0) {
+        console.log("On a des données");
         afficherDonneesSurCarte(alertesDeforestation);
 
         // Mettre à jour compteur d'alertes dans le header HTML
         const badgeAlertes = document.getElementById('alerts-count');
         if (badgeAlertes) {
+            console.log("modification compteur d'alertes");
             badgeAlertes.textContent = alertesDeforestation.length;
         }
     } else {
