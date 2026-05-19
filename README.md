@@ -135,6 +135,32 @@ npm start
 
 ---
 
+# 🖥️ Utilisation du Serveur (Déploiement Rapide)
+
+Le frontend du projet est accessible en interne via un serveur web Apache (IP : ```192.168.110.132```).
+
+## 1. Se connecter au serveur
+
+Ajoutez la route réseau (si vous êtes sur un PC personnel à l'université) puis connectez-vous en SSH :
+
+```bash
+sudo ip route add 192.168.110.0/24 via 10.192.12.11
+ssh omer@192.168.110.132
+```
+(Mot de passe : simpsons)
+
+## 2. Publier une mise à jour
+
+Après avoir codé et sauvegardé vos modifications (idéalement via VS Code avec l'extension Remote - SSH), déployez-les en direct sur le serveur Apache avec cette commande :
+
+```bash
+sudo cp -r ~/deforest/frontend/* /var/www/html/
+```
+
+Le site est ensuite visible par tous sur le réseau à l'adresse :
+
+http://192.168.110.132
+
 
 ---
 
