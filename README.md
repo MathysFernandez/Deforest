@@ -64,7 +64,7 @@ Le projet a pour objectif de :
 
 
 
-| <a href="https://gitlab.univ-lr.fr/mferna08"> <img src="https://gitlab.univ-lr.fr/uploads/-/system/user/avatar/2480/avatar.png?width=800" width="64" height="64"> </a> | **Nom :** Zambranorosales Junior <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/jzambran) |
+| <a href="https://gitlab.univ-lr.fr/mferna08"> <img src="https://gitlab.univ-lr.fr/uploads/-/system/user/avatar/2480/avatar.png?width=800" width="64" height="64"> </a> | **Nom :** Zambrano Junior <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/jzambran) |
 |:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
 
 
