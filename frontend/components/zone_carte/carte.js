@@ -33,6 +33,10 @@ L.control.zoom({
     position: 'bottomleft',
 }).addTo(map);
 
+
+
+
+
 // ==========================================================================
 //   couche de clustering des points
 // ==========================================================================
@@ -151,4 +155,63 @@ addDeforestationPoint(-2.8797, 23.6560, {
 addDeforestationPoint(56.1304, -106.3468, {
     region: "Canada",
     loss: "600 hectares"
+});
+
+
+
+
+// ==========================================================================
+//   Fonction pour parcourir les données SQL et créer les marqueurs
+// ==========================================================================
+
+function afficherDonneesSurCarte(donnees) {
+    deforestationLayer.clearLayers(); // On vide les anciens points
+
+    donnees.forEach(point => {
+        if (point.latitude && point.longitude) {
+            // On réutilise la superbe fonction que vous avez déjà créée !
+            addDeforestationPoint(point.latitude, point.longitude, {
+                region: "Alerte Détectée",
+                loss: point.gfw_integrated_alerts__confidence === 'confirmed' ? "Confirmée" : "Suspectée"
+            });
+        }
+    });
+}
+
+// ==========================================================================
+//   Le Chargeur Dynamique (Amortisseur de requêtes)
+// ==========================================================================
+
+let minuteurRequete = null;
+
+async function actualiserCarteDynamique() {
+    if (map.getZoom() < 5) {
+        console.log("trop dézoomé");
+        return; // Sécurité anti-crash si on est trop dézoomé
+    }
+    // Calcul des frontières de l'écran
+    const limites = map.getBounds();
+    const sud = Math.max(limites.getSouth(), -90);
+    const nord = Math.min(limites.getNorth(), 90);
+    const ouest = limites.getWest() % 360;
+    const est = limites.getEast() % 360;
+
+    // Appel à votre api.js
+    const alertes = await fetchDeforestationData(sud, ouest, nord, est);
+    if (alertes.length === 0) {
+        console.log("donnée vide");
+        return;
+    }
+    console.log(alertes.length);
+    afficherDonneesSurCarte(alertes);
+
+    // Mise à jour du header
+    const badgeAlertes = document.getElementById('alerts-count');
+    if (badgeAlertes) badgeAlertes.textContent = alertes.length;
+}
+
+// On écoute les mouvements de la carte
+map.on('moveend', () => {
+    clearTimeout(minuteurRequete);
+    minuteurRequete = setTimeout(actualiserCarteDynamique, 1000); // Attend 1s avant d'appeler l'API
 });

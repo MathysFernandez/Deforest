@@ -13,74 +13,43 @@ app.use(cors());
 app.use(express.json());
 
 // ======================================================================
-// Route API
+// Route API (POST pour recevoir la zone visible de la carte)
 // ======================================================================
 
-app.get('/api/alerts', async (req, res) => {
-
-    const datasetUrl =
-        "https://data-api.globalforestwatch.org/dataset/gfw_integrated_alerts/latest/query";
+app.post('/api/alerts', async (req, res) => {
+    // On récupère les coordonnées envoyées par le frontend
+    const { sud, ouest, nord, est } = req.body;
+    
+    const datasetUrl = "https://data-api.globalforestwatch.org/dataset/gfw_integrated_alerts/v20260520/query/json";
 
     try {
-
         const response = await fetch(datasetUrl, {
-
             method: 'POST',
-
             headers: {
                 'Authorization': `Bearer ${process.env.GFW_BEARER_TOKEN}`,
                 'x-api-key': process.env.GFW_API_KEY,
                 'Content-Type': 'application/json'
             },
-
             body: JSON.stringify({
-
-                sql: `
-                    SELECT latitude, longitude,
-                    gfw_integrated_alerts__confidence
-                    FROM data
-                    WHERE gfw_integrated_alerts__date >= '2026-01-01'
-                    LIMIT 500
-                `,
-
+                // La requête SQL est bien là ! On limite à 200 pour la fluidité
+                sql: "SELECT latitude, longitude, gfw_integrated_alerts__confidence FROM data WHERE gfw_integrated_alerts__date >= '2026-04-01' LIMIT 10",
                 geometry: {
                     type: "Polygon",
-                    coordinates: [[
-                        [-70.0, -10.0],
-                        [-60.0, -10.0],
-                        [-60.0, 0.0],
-                        [-70.0, 0.0],
-                        [-70.0, -10.0]
-                    ]]
+                    // On injecte dynamiquement les coordonnées
+                    coordinates: [[[ouest, sud], [est, sud], [est, nord], [ouest, nord], [ouest, sud]]]
                 }
-
             })
-
         });
 
-        if (!response.ok) {
-
-            throw new Error(
-                `Erreur GFW : ${response.status}`
-            );
-        }
-
+        if (!response.ok) throw new Error(`Erreur GFW : ${response.status}`);
+        
         const data = await response.json();
-
         res.json(data);
 
     } catch (error) {
-
-        console.error(
-            "Erreur serveur :",
-            error
-        );
-
-        res.status(500).json({
-            error: "Erreur serveur"
-        });
+        console.error("Erreur serveur :", error);
+        res.status(500).json({ error: "Erreur serveur" });
     }
-
 });
 
 // ======================================================================
