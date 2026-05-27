@@ -175,7 +175,12 @@ GFW_BEARER_TOKEN= <votre token>
 PORT=3000
 ```
 
+## 6 Lancer le projet
 
+
+```bash
+node server.js
+```
 
 
 
