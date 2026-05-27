@@ -72,6 +72,21 @@ header h1 {
     font-weight: 600;
     color: var(--accent-alert); 
 }
+/*logo conteneur*/
+.logo-container {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/*logo*/
+.logo-container img {
+    /*taille de l'image fixe*/
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+}
+
 
 /* ==========================================================================
     Le Layout du tableau de bord
