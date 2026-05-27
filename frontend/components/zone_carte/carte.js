@@ -144,20 +144,30 @@ function addDeforestationPoint(lat, lng, data = {}) {
 function afficherDonneesSurCarte(donnees) {
     deforestationLayer.clearLayers(); 
 
+    // On crée un "carnet" pour noter les points qu'on a déjà affichés
+    const pointsVus = new Set();
+
     donnees.forEach(point => {
         if (point.latitude && point.longitude) {
             
-            // Décalage aléatoire (environ 500m - 1km) pour eviter la supperposition
-            const decalageLat = (Math.random() - 0.5) * 0.01;
-            const decalageLng = (Math.random() - 0.5) * 0.01;
+            // On arrondit les coordonnées
+            const latArrondie = point.latitude.toFixed(3);
+            const lngArrondie = point.longitude.toFixed(3);
+            
+            // On crée une clé unique pour cette position
+            const coordKey = `${latArrondie},${lngArrondie}`;
 
-            const latAjustee = point.latitude + decalageLat;
-            const lngAjustee = point.longitude + decalageLng;
+            // Si cette zone précise n'a pas encore de point, on l'ajoute
+            if (!pointsVus.has(coordKey)) {
+                
+                pointsVus.add(coordKey); // On l'enregistre pour bloquer les suivants
 
-            addDeforestationPoint(latAjustee, lngAjustee, {
-                region: "Alerte Détectée",
-                loss: point.gfw_integrated_alerts__confidence === 'confirmed' ? "Confirmée" : "Suspectée"
-            });
+                // On affiche le point avec ses VRAIES coordonnées (sans aléatoire)
+                addDeforestationPoint(point.latitude, point.longitude, {
+                    region: "Alerte Détectée",
+                    loss: point.gfw_integrated_alerts__confidence === 'confirmed' ? "Confirmée" : "Suspectée"
+                });
+            }
         }
     });
 }
