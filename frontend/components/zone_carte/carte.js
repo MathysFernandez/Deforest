@@ -143,7 +143,6 @@ function afficherDonneesSurCarte(donnees) {
 
     donnees.forEach(point => {
         if (point.latitude && point.longitude) {
-            // On réutilise la superbe fonction que vous avez déjà créée !
             addDeforestationPoint(point.latitude, point.longitude, {
                 region: "Alerte Détectée",
                 loss: point.gfw_integrated_alerts__confidence === 'confirmed' ? "Confirmée" : "Suspectée"
