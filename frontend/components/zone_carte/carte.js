@@ -2,11 +2,14 @@
 //   la carte avec Leaflet <- Bibliothèque
 // ==========================================================================
 
-// le tableau c'est pour donner la position initiale et le 2 pour le zoom
+// le tableau c'est pour donner la position initiale et le 3 pour le zoom
 const map = L.map('maCarte', {
     attributionControl: false,
-    zoomControl: false
-}).setView([20, 0], 2);
+    zoomControl: false,
+    maxBounds: [[-90, -180], [90, 180]], // pour limiter la map
+    maxBoundsViscosity: 1.0,             // bloque fermement la caméra aux limites
+    minZoom: 3        
+}).setView([20, 0], 3);
 
 // ==========================================================================
 //   ajout des tuiles (CartoDB Dark Matter <- fournisseur)
@@ -21,7 +24,8 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     subdomains: 'abcd',
 
     maxZoom: 18, // zoom maximum
-    minZoom: 2   // éviter de dézoomer à l'infini
+    minZoom: 3,
+    noWrap: true //pas de map infini
 
 }).addTo(map);
 
@@ -32,10 +36,6 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
 L.control.zoom({
     position: 'bottomleft',
 }).addTo(map);
-
-
-
-
 
 // ==========================================================================
 //   couche de clustering des points
