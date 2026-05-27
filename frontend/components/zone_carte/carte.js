@@ -41,8 +41,11 @@ L.control.zoom({
 //   couche de clustering des points
 // ==========================================================================
 
-// cette couche va contenir tous les marqueurs de déforestation
-const deforestationLayer = L.markerClusterGroup();
+const deforestationLayer = L.markerClusterGroup({
+    spiderfyOnMaxZoom: false,    // <-- tue la grille !
+    disableClusteringAtZoom: 10, // zoom 10
+    maxClusterRadius: 40         // Réduit la zone d'aspiration des bulles
+});
 
 map.addLayer(deforestationLayer);
 
@@ -139,17 +142,36 @@ function addDeforestationPoint(lat, lng, data = {}) {
 // ==========================================================================
 
 function afficherDonneesSurCarte(donnees) {
-    deforestationLayer.clearLayers(); // On vide les anciens points
+    deforestationLayer.clearLayers(); 
+
+    // On crée un "carnet" pour noter les points qu'on a déjà affichés
+    const pointsVus = new Set();
 
     donnees.forEach(point => {
         if (point.latitude && point.longitude) {
-            // On réutilise la superbe fonction que vous avez déjà créée !
-            addDeforestationPoint(point.latitude, point.longitude, {
-                region: "Alerte Détectée",
-                loss: point.gfw_integrated_alerts__confidence === 'confirmed' ? "Confirmée" : "Suspectée"
-            });
+            
+            // On arrondit les coordonnées
+            const latArrondie = point.latitude.toFixed(3);
+            const lngArrondie = point.longitude.toFixed(3);
+            
+            // On crée une clé unique pour cette position
+            const coordKey = `${latArrondie},${lngArrondie}`;
+
+            // Si cette zone précise n'a pas encore de point, on l'ajoute
+            if (!pointsVus.has(coordKey)) {
+                
+                pointsVus.add(coordKey); // On l'enregistre pour bloquer les suivants
+
+                // On affiche le point avec ses VRAIES coordonnées (sans aléatoire)
+                addDeforestationPoint(point.latitude, point.longitude, {
+                    region: "Alerte Détectée",
+                    loss: point.gfw_integrated_alerts__confidence === 'confirmed' ? "Confirmée" : "Suspectée"
+                });
+            }
         }
     });
+
+    return pointsVus.size; // On renvoie le nombre de points uniques
 }
 
 // ==========================================================================
@@ -181,12 +203,15 @@ map.on(L.Draw.Event.CREATED, async function (event) {
         return;
     }
 
+    // On stocke le nombre de points uniques retourné par la fonction
+    const nbPointsUniques = afficherDonneesSurCarte(alertes);
+
     // Affichage des points
     afficherDonneesSurCarte(alertes);
 
     // Mise à jours
     const badgeAlertes = document.getElementById('alerts-count');
-    if (badgeAlertes) {
-        badgeAlertes.textContent = alertes.length;
-    }
+        if (badgeAlertes) {
+            badgeAlertes.textContent = nbPointsUniques; 
+        }
 });
