@@ -50,12 +50,12 @@ Le backend :
 
 # 📁 Variables d’environnement (.env)
 
-Les informations sensibles sont stockées dans un fichier `.env` situé dans le dossier backend.
+Les informations sensibles sont stockées dans un fichier `.env` à placer dans le backend parcequ'il n'est pas placé par défaut.
 
 Exemple :
 
 ```env
-GFW_API_KEY=NOTRE_CLE_API (On ne le met pas pour une question de sécurité)
+GFW_API_KEY=NOTRE_CLE_API 
 GFW_BEARER_TOKEN=NOTRE_TOKEN
 PORT=3000
 ```
