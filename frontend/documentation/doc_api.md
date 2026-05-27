@@ -85,3 +85,68 @@ node_modules/
 ```
 
 Cela évite de publier les clés sensibles sur GitLab.
+
+---
+
+# ⚙️ Installation du backend
+
+Le backend utilise **Node.js** et **Express.js**.
+
+Chaque utilisateur doit installer les dépendances du projet après avoir cloné le dépôt Git.
+
+---
+
+# 📦 Installer Node.js
+
+Node.js est nécessaire pour lancer le serveur backend.
+
+Téléchargement officiel :
+
+https://nodejs.org/
+
+Vérifier l’installation :
+
+```bash
+node -v
+npm -v
+```
+
+---
+
+# 📥 Installation des dépendances
+
+## 1. Aller dans le dossier backend
+
+```bash
+cd backend
+```
+
+---
+
+## 2. Installer les dépendances du projet
+
+```bash
+npm install
+```
+
+Cette commande :
+- télécharge automatiquement toutes les bibliothèques nécessaires,
+- crée le dossier `node_modules/`,
+- installe Express, dotenv et les autres dépendances.
+
+---
+
+# 📁 Pourquoi node_modules n’est pas envoyé sur GitLab ?
+
+Le dossier `node_modules/` peut être recréé automatiquement grâce à :
+
+```bash
+npm install
+```
+
+Il est donc ignoré dans le `.gitignore`.
+
+Cela permet :
+- d’éviter des fichiers trop lourds sur GitLab,
+- de garder un projet propre,
+- d’assurer que chaque utilisateur installe les bonnes versions.
