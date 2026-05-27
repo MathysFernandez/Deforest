@@ -2,13 +2,13 @@
 //   la carte avec Leaflet <- Bibliothèque
 // ==========================================================================
 
-// le tableau c'est pour donner la position initiale et le 2 pour le zoom
+// le tableau c'est pour donner la position initiale et le 3 pour le zoom
 const map = L.map('maCarte', {
     attributionControl: false,
     zoomControl: false,
-    maxBounds: [[-90, -180], [90, 180]], // Limite le défilement aux coordonnées réelles de la Terre
-    maxBoundsViscosity: 1.0,             // Bloque fermement la caméra aux limites (pas d'effet rebond)
-    minZoom: 3                         // Permet de voir le globe en entier (avec les bandes sur les côtés)
+    maxBounds: [[-90, -180], [90, 180]], // pour limiter la map
+    maxBoundsViscosity: 1.0,             // bloque fermement la caméra aux limites
+    minZoom: 3        
 }).setView([20, 0], 3);
 
 // ==========================================================================
@@ -24,8 +24,8 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     subdomains: 'abcd',
 
     maxZoom: 18, // zoom maximum
-    minZoom: 3,  // éviter de dézoomer à l'infini
-    noWrap: true // Empêche la répétition horizontale de la carte
+    minZoom: 3,
+    noWrap: true //pas de map infini
 
 }).addTo(map);
 
@@ -36,10 +36,6 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
 L.control.zoom({
     position: 'bottomleft',
 }).addTo(map);
-
-
-
-
 
 // ==========================================================================
 //   couche de clustering des points
