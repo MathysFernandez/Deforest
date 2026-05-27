@@ -101,32 +101,6 @@ function addDeforestationPoint(lat, lng, data = {}) {
     marker.addTo(deforestationLayer);
 }
 
-// ==========================================================================
-//   TEST CLUSTERING AMAZONIE
-// ==========================================================================
-
-
-addDeforestationPoint(-3.4753, -62.2259, {
-    region: "Amazonie Sud",
-    loss: "900 hectares"
-});
-
-addDeforestationPoint(-3.4553, -62.2059, {
-    region: "Amazonie Est",
-    loss: "1500 hectares"
-});
-
-addDeforestationPoint(-3.4600, -62.2100, {
-    region: "Amazonie Ouest",
-    loss: "700 hectares"
-});
-
-addDeforestationPoint(-3.4700, -62.2200, {
-    region: "Amazonie Centrale",
-    loss: "2000 hectares"
-});
-
-
 
 // ==========================================================================
 //   Fonction pour parcourir les données SQL et créer les marqueurs
