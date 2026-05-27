@@ -100,9 +100,18 @@ Chaque utilisateur doit installer les dépendances du projet après avoir cloné
 
 Node.js est nécessaire pour lancer le serveur backend.
 
+> Pour Windows : 
 Téléchargement officiel :
 
 https://nodejs.org/
+
+> Pour Linux :
+
+
+
+
+
+
 
 Vérifier l’installation :
 
