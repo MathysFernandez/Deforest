@@ -6,6 +6,8 @@
     <title>Déforestation</title>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
     <link rel="stylesheet" href="core/reset.css">
     <link rel="stylesheet" href="core/global.css">
     <link rel="stylesheet" href="components/zone_carte/carte.css">
@@ -15,6 +17,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" defer></script>
 
     <script src="core/api.js" defer></script>
     <script src="components/zone_carte/carte.js" defer></script>
@@ -37,28 +40,55 @@
     </header>
 
     <main class="dashboard-grid">
-        <section class="map-section">
-            <div id="maCarte"></div>
-        </section>
+        <div class="content-main">
+            <!-- Vue Carte -->
+            <section class="content-section active" id="view-carte">
+                <div class="map-section">
+                    <div id="maCarte"></div>
+                </div>
+            </section>
 
-        <aside class="widgets-sidebar">
-            <div class="widget-container" id="widget-evolution">
-                <h3>📊 Évolution Temporelle</h3>
-                <canvas id="monGraphiqueEvolution"></canvas>
-            </div>
+            <!-- Vue Évolution -->
+            <section class="content-section" id="view-evolution">
+                <div class="widget-container">
+                    <h3>📊 Évolution Temporelle</h3>
+                    <canvas id="monGraphiqueEvolution"></canvas>
+                </div>
+            </section>
 
-            <div class="widget-container" id="widget-carbone">
-                <h3>☁️ Dette Carbone</h3>
-                <div id="compteur-carbone" class="counter">0</div>
-                <p>Tonnes d'éq. CO2 générées</p>
-            </div>
+            <!-- Vue Prédiction -->
+            <section class="content-section" id="view-carbone">
+                <div class="widget-container">
+                    <h3>☁️ Dette Carbone</h3>
+                    <div id="compteur-carbone" class="counter">0</div>
+                    <p>Tonnes d'éq. CO2 générées</p>
+                </div>
+            </section>
 
-            <div class="widget-container" id="widget-impact">
-                <h3>⚽ Impact Concret</h3>
-                <div id="compteur-impact" class="counter">0</div>
-                <p>Terrains de football détruits</p>
-            </div>
-        </aside>
+            <!-- Vue Impact -->
+            <section class="content-section" id="view-impact">
+                <div class="widget-container">
+                    <h3>⚽ Impact Concret</h3>
+                    <div id="compteur-impact" class="counter">0</div>
+                    <p>Terrains de football détruits</p>
+                </div>
+            </section>
+        </div>
+
+        <nav class="navbar">
+            <button class="nav-button active" data-view="carte">
+                🗺️ Carte 
+            </button>
+            <button class="nav-button" data-view="evolution">
+                📊 Évolution
+            </button>
+            <button class="nav-button" data-view="carbone">
+                ☁️ Prédiction
+            </button>
+            <button class="nav-button" data-view="impact">
+                ⚽ Impact
+            </button>
+        </nav>
     </main>
 
 </body>
