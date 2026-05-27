@@ -45,3 +45,43 @@ Le backend :
 - stocke les clés API,
 - effectue les requêtes sécurisées,
 - renvoie uniquement les données nécessaires au frontend.
+
+---
+
+# 📁 Variables d’environnement (.env)
+
+Les informations sensibles sont stockées dans un fichier `.env` situé dans le dossier backend.
+
+Exemple :
+
+```env
+GFW_API_KEY=NOTRE_CLE_API (On ne le met pas pour une question de sécurité)
+GFW_BEARER_TOKEN=NOTRE_TOKEN
+PORT=3000
+```
+
+---
+
+## ⚠️ Important pour tous les membres du projet
+
+Le fichier `.env` n’est jamais envoyé sur GitLab pour des raisons de sécurité.
+
+Chaque utilisateur qui clone le projet doit :
+1. récupérer le fichier `.env`,
+2. le placer dans le dossier `backend/`,
+3. utiliser ses propres clés API si nécessaire.
+
+Sans le fichier `.env`, le backend ne peut pas démarrer correctement et les requêtes API échouent.
+
+---
+
+# 🚫 Protection Git
+
+Le fichier `.env` est ignoré grâce au `.gitignore`.
+
+```gitignore
+backend/.env
+node_modules/
+```
+
+Cela évite de publier les clés sensibles sur GitLab.
