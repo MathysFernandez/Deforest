@@ -171,7 +171,7 @@ map.on(L.Draw.Event.CREATED, async function (event) {
 
     console.log("Nouvelle recherche dans la zone :", { sud, ouest, nord, est });
 
-    // Appelapi.js avec les nouvelles coordonnées
+    // Appelapi.js avec les nouvelles coordonnée
     const alertes = await fetchDeforestationData(sud, ouest, nord, est);
 
     if (alertes.length === 0) {
@@ -180,7 +180,7 @@ map.on(L.Draw.Event.CREATED, async function (event) {
         return;
     }
 
-    // Affichage des nouveaux points
+    // Affichage des point
     afficherDonneesSurCarte(alertes);
 
     // Mise à jour
