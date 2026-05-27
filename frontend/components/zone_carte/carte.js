@@ -169,23 +169,58 @@ map.on(L.Draw.Event.CREATED, async function (event) {
     const ouest = limites.getWest();
     const est = limites.getEast();
 
+    // Notification de la recherche
     console.log("Nouvelle recherche dans la zone :", { sud, ouest, nord, est });
+    // Changement d'état sur l'UI
+    setStatus("⏳ API en recherche...", "loading");
+    document.getElementById('alerts-count').textContent = "..."; // Met le compteur en attente
 
-    // Appel api.js avec les nouvelles coordonnée
-    const alertes = await fetchDeforestationData(sud, ouest, nord, est);
+    try {
+        // Appel api.js avec les nouvelles coordo
+        const alertes = await fetchDeforestationData(sud, ouest, nord, est);
 
-    if (alertes.length === 0) {
-        deforestationLayer.clearLayers();
-        document.getElementById('alerts-count').textContent = 0;
+        if (!alertes || alertes.length === 0) {
+            deforestationLayer.clearLayers();
+            document.getElementById('alerts-count').textContent = 0;
+
+            console.log("Aucun résultat");
+            // Changement d'état sur l'UI
+            setStatus("Aucun résultat trouvé dans cette zone.", "info");
+
+            // Masque le message au bout de 3s
+            setTimeout(() => setStatus("", ""), 3000);
+            return;
+        }
+
+        // On masque le message et on affiche les données
+        setStatus("", "");
+        // Affichage des points
+        afficherDonneesSurCarte(alertes);
+
+        // Mise à jours
+        const badgeAlertes = document.getElementById('alerts-count');
+        if (badgeAlertes) {
+            badgeAlertes.textContent = alertes.length;
+        }
+    }
+    catch(error) {
+        // Changement d'état sur l'UI
+        console.error("Erreur lors de la récupération des données :", error);
+        setStatus("❌ Erreur retournée par l'API.", "error");
+        document.getElementById('alerts-count').textContent = "Erreur";}
+});
+
+
+// Gestion de l'interface utilisateur (Statut de l'API)
+function setStatus(message, type) {
+    const statusDiv = document.getElementById('map-status');
+    if (!statusDiv) return;
+
+    if (!message) {
+        statusDiv.className = 'map-status hidden';
         return;
     }
 
-    // Affichage des points
-    afficherDonneesSurCarte(alertes);
-
-    // Mise à jours
-    const badgeAlertes = document.getElementById('alerts-count');
-    if (badgeAlertes) {
-        badgeAlertes.textContent = alertes.length;
-    }
-});
+    statusDiv.textContent = message;
+    statusDiv.className = `map-status ${type}`;
+}
