@@ -96,33 +96,83 @@ Chaque utilisateur doit installer les dépendances du projet après avoir cloné
 
 ---
 
+---
+
+# ⚙️ Installation du backend
+
+Le backend utilise **Node.js** et **Express.js**.
+
+Chaque utilisateur doit installer les dépendances du projet après avoir cloné le dépôt Git.
+
+---
+
 # 📦 Installer Node.js
 
 Node.js est nécessaire pour lancer le serveur backend.
 
-> Pour Windows : 
 Téléchargement officiel :
 
 https://nodejs.org/
 
-> Pour Linux :
+---
 
+# 🪟 Installation sous Windows
 
+## 1. Télécharger Node.js
 
+Télécharger l’installateur depuis :
 
+https://nodejs.org/
 
+Choisir la version **LTS** recommandée.
 
+---
 
-Vérifier l’installation :
+## 2. Installer Node.js
+
+Lancer l’installateur `.msi` puis :
+- cliquer sur *Next*,
+- accepter les conditions,
+- laisser les options par défaut,
+- terminer l’installation.
+
+---
+
+## 3. Vérifier l’installation
+
+Ouvrir un terminal PowerShell ou CMD :
 
 ```bash
 node -v
 npm -v
 ```
 
+Les versions installées doivent apparaître dans le terminal.
+
 ---
 
-# 📥 Installation des dépendances
+# 🐧 Installation sous Linux (Ubuntu/Debian)
+
+## 1. Installer npm et Node.js
+
+```bash
+sudo apt install npm
+```
+
+---
+
+## 2. Vérifier l’installation
+
+```bash
+npm --version
+node -v
+```
+
+Les versions installées doivent apparaître dans le terminal.
+
+---
+
+# 📥 Installation des dépendances du projet
 
 ## 1. Aller dans le dossier backend
 
@@ -132,14 +182,14 @@ cd backend
 
 ---
 
-## 2. Installer les dépendances du projet
+## 2. Installer les dépendances
 
 ```bash
 npm install
 ```
 
 Cette commande :
-- télécharge automatiquement toutes les bibliothèques nécessaires,
+- télécharge automatiquement les bibliothèques nécessaires,
 - crée le dossier `node_modules/`,
 - installe Express, dotenv et les autres dépendances.
 
