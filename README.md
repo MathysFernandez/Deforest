@@ -122,16 +122,64 @@ git clone git@gitlab.univ-lr.fr:pingouins/deforest.git
 ## 2. Accéder au dossier
 
 ```bash
-cd deforest
+cd deforest/backend
 ```
 
+## 3. Sous Linux:
 
 
-## 3. Lancer le projet
+## 3.1 Installation des dépendances
 
 ```bash
-npm start
+npm install
 ```
+
+## 3.2 Si Node.js et npm ne sont pas installés 
+
+```bash
+sudo apt update
+sudo apt install nodejs npm
+npm --version
+```
+
+## 3.2 Configuration de l'environnement (.env)
+
+```bash
+node server.js
+```
+
+## 4. Sous Windows:
+
+## 4.1 Installation des dépendances
+
+```bash
+npm install
+```
+
+## 4.2 Si Node.js et npm ne sont pas installés 
+
+> Ligne de commande: 
+```bash
+winget install OpenJS.NodeJS.LTS
+```
+
+
+
+## 5 Configuration de l'environnement (.env)
+Créez un fichier nommé .env à la racine du dossier backend.
+Vous devez générer une clé pour l'API Global Forest Watch (GFW) depuis le terminal et l'insérer dans ce fichier de la manière suivante :
+
+```bash
+GFW_API_KEY= <votre cle>
+GFW_BEARER_TOKEN= <votre token>
+PORT=3000
+```
+
+
+
+
+
+
 
 ---
 
