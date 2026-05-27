@@ -14,7 +14,7 @@ async function exploreGFW() {
     try {
         const datasetUrl = "https://data-api.globalforestwatch.org/dataset/gfw_integrated_alerts/v20260520/query/json";
 
-        console.log('📡 Appel API GFW...');
+        console.log('Appel API GFW...');
         const response = await fetch(datasetUrl, {
             method: 'POST',
             headers: {
@@ -23,44 +23,48 @@ async function exploreGFW() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                sql: "SELECT * FROM data LIMIT 1",
+                sql: "SELECT latitude, longitude, gfw_integrated_alerts__confidence, gfw_plantations__type FROM data WHERE gfw_integrated_alerts__date >= '2026-04-01' LIMIT 10",
                 geometry: {
                     type: "Polygon",
-                    coordinates: [[[-74.3, 40.7], [-73.7, 40.7], [-73.7, 40.9], [-74.3, 40.9], [-74.3, 40.7]]]
+                    coordinates: [[[-75, -15], [-55, -15], [-55, 5], [-75, 5], [-75, -15]]]
                 }
             })
         });
 
         if (!response.ok) {
             const errorData = await response.text();
-            console.error(`\n❌ Erreur HTTP ${response.status}:`);
+            console.error(`\nErreur HTTP ${response.status}:`);
             console.error('Réponse d\'erreur:');
-            console.error(errorData);
+            try {
+                console.error(JSON.stringify(JSON.parse(errorData), null, 2));
+            } catch {
+                console.error(errorData);
+            }
             process.exit(1);
         }
 
         const data = await response.json();
 
-        console.log('\n📦 Réponse API complète:');
+        console.log('\nRéponse API complète:');
         console.log(JSON.stringify(data, null, 2));
 
         if (data.data && data.data.length > 0) {
             const firstRow = data.data[0];
             const columns = Object.keys(firstRow);
 
-            console.log('\n✅ Colonnes disponibles:\n');
+            console.log('\nColonnes disponibles:\n');
             columns.forEach((col, index) => {
                 console.log(`  ${index + 1}. ${col}`);
             });
 
-            console.log('\n📊 Premier enregistrement:\n');
+            console.log('\nPremier enregistrement:\n');
             console.log(JSON.stringify(firstRow, null, 2));
         } else {
-            console.log('\n⚠️ Aucune donnée retournée');
+            console.log('\nAucune donnée retournée');
         }
 
     } catch (error) {
-        console.error('\n❌ Erreur:', error.message);
+        console.error('\nErreur:', error.message);
     }
 }
 
