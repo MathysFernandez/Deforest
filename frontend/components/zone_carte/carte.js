@@ -42,15 +42,9 @@ L.control.zoom({
 // ==========================================================================
 
 const deforestationLayer = L.markerClusterGroup({
-    // Désactive l'effet qui met les points à égale distance
-    spiderfyOnMaxZoom: false,
-    
-    // à partir d'un certains zoom les points se dégroupe
-    disableClusteringAtZoom: 8,
-    
-    // Optionnel : ajuste la distance de regroupement (par défaut 80). 
-    // Plus la valeur est petite, plus les points s'affichent vite individuellement.
-    maxClusterRadius: 50
+    spiderfyOnMaxZoom: false,    // <-- tue la grille !
+    disableClusteringAtZoom: 10, // zoom 10
+    maxClusterRadius: 40         // Réduit la zone d'aspiration des bulles
 });
 
 map.addLayer(deforestationLayer);
@@ -148,19 +142,19 @@ function addDeforestationPoint(lat, lng, data = {}) {
 // ==========================================================================
 
 function afficherDonneesSurCarte(donnees) {
-    deforestationLayer.clearLayers(); // On vide les anciens points
+    deforestationLayer.clearLayers(); 
 
     donnees.forEach(point => {
         if (point.latitude && point.longitude) {
-
-            // micro-décalage necessaire suite au nombreux points au même endroit
-            const decalageLat = (Math.random() - 0.5) * 0.002;
-            const decalageLng = (Math.random() - 0.5) * 0.002;
+            
+            // Décalage aléatoire (environ 500m - 1km) pour eviter la supperposition
+            const decalageLat = (Math.random() - 0.5) * 0.01;
+            const decalageLng = (Math.random() - 0.5) * 0.01;
 
             const latAjustee = point.latitude + decalageLat;
             const lngAjustee = point.longitude + decalageLng;
 
-            addDeforestationPoint(point.latitude, point.longitude, {
+            addDeforestationPoint(latAjustee, lngAjustee, {
                 region: "Alerte Détectée",
                 loss: point.gfw_integrated_alerts__confidence === 'confirmed' ? "Confirmée" : "Suspectée"
             });
