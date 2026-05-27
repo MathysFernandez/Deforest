@@ -86,26 +86,23 @@ https://data-api.globalforestwatch.org/
 ```bash
 deforest/
 │
-├── frontend/              # Interface utilisateur
-│   ├── css/
-│   ├── js/
-│   └── assets/
+├── frontend/             # Interface utilisateur
+│   ├── components/
+│   ├── core/
+│   ├── assets/
+│   ├── documentation/
+│   └── index.html
 │
 ├── backend/               # Serveur backend
-│   ├── routes/
-│   ├── controllers/
-│   ├── services/
-│   └── config/
+│   ├── node_modules/
+│   ├── .env           # Variables d’environnement
+│   ├── package-lock.json
+│   └── package.json
 │
-├── api/                   # Gestion des appels API GFW
-│   ├── gfwService.js
-│   └── utils.js
 │
-├── docs/                  # Documentation du projet
-│
-├── .env                   # Variables d’environnement
+│                 
 ├── .gitignore
-├── package.json
+├── LICENSE
 └── README.md
 ```
 
