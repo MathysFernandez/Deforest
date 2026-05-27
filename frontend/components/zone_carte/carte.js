@@ -49,6 +49,37 @@ map.addLayer(deforestationLayer);
 console.log("Carte initialisée !");
 
 // ==========================================================================
+//   Outils de sélection de zone (Leaflet.draw)
+// ==========================================================================
+
+const drawnItems = new L.FeatureGroup();
+map.addLayer(drawnItems);
+
+const drawControl = new L.Control.Draw({
+    draw: {
+        polygon: false,
+        polyline: false,
+        circle: false,
+        marker: false,
+        circlemarker: false,
+        rectangle: {
+            shapeOptions: {
+                color: '#E07A5F', 
+                weight: 2
+            }
+        }
+    },
+    edit: {
+        featureGroup: drawnItems,
+        remove: true
+    }
+});
+map.addControl(drawControl);
+
+
+
+
+// ==========================================================================
 //   Icône personnalisée des points
 // ==========================================================================
 
@@ -121,39 +152,40 @@ function afficherDonneesSurCarte(donnees) {
 }
 
 // ==========================================================================
-//   Le Chargeur Dynamique (Amortisseur de requêtes)
+//   Recherche ciblée via la zone dessinée
 // ==========================================================================
 
-let minuteurRequete = null;
+map.on(L.Draw.Event.CREATED, async function (event) {
+    const layer = event.layer;
 
-async function actualiserCarteDynamique() {
-    if (map.getZoom() < 5) {
-        console.log("trop dézoomé");
-        return; // Sécurité anti-crash si on est trop dézoomé
-    }
-    // Calcul des frontières de l'écran
-    const limites = map.getBounds();
-    const sud = Math.max(limites.getSouth(), -90);
-    const nord = Math.min(limites.getNorth(), 90);
-    const ouest = limites.getWest() % 360;
-    const est = limites.getEast() % 360;
+    // Nettoie la carte pour ne garder qu'une seule zone de recherche
+    drawnItems.clearLayers();
+    drawnItems.addLayer(layer);
 
-    // Appel à votre api.js
+    // Extraction des coordonnées du rectangle
+    const limites = layer.getBounds();
+    const sud = limites.getSouth();
+    const nord = limites.getNorth();
+    const ouest = limites.getWest();
+    const est = limites.getEast();
+
+    console.log("Nouvelle recherche dans la zone :", { sud, ouest, nord, est });
+
+    // Appelapi.js avec les nouvelles coordonnées
     const alertes = await fetchDeforestationData(sud, ouest, nord, est);
+
     if (alertes.length === 0) {
-        console.log("donnée vide");
+        deforestationLayer.clearLayers();
+        document.getElementById('alerts-count').textContent = 0;
         return;
     }
-    console.log(alertes.length);
+
+    // Affichage des nouveaux points
     afficherDonneesSurCarte(alertes);
 
-    // Mise à jour du header
+    // Mise à jour
     const badgeAlertes = document.getElementById('alerts-count');
-    if (badgeAlertes) badgeAlertes.textContent = alertes.length;
-}
-
-// On écoute les mouvements de la carte
-map.on('moveend', () => {
-    clearTimeout(minuteurRequete);
-    minuteurRequete = setTimeout(actualiserCarteDynamique, 1000); // Attend 1s avant d'appeler l'API
+    if (badgeAlertes) {
+        badgeAlertes.textContent = alertes.length;
+    }
 });
