@@ -172,8 +172,8 @@ map.on(L.Draw.Event.CREATED, async function (event) {
     // Notification de la recherche
     console.log("Nouvelle recherche dans la zone :", { sud, ouest, nord, est });
     // Changement d'état sur l'UI
-    setStatus("⏳ API en recherche...", "loading");
-    document.getElementById('alerts-count').textContent = "..."; // Met le compteur en attente
+    setStatus("API en recherche...", "loading");
+    document.getElementById('alerts-count').textContent = "..."; 
 
     try {
         // Appel api.js avec les nouvelles coordo
@@ -206,7 +206,7 @@ map.on(L.Draw.Event.CREATED, async function (event) {
     catch(error) {
         // Changement d'état sur l'UI
         console.error("Erreur lors de la récupération des données :", error);
-        setStatus("❌ Erreur retournée par l'API.", "error");
+        setStatus("Erreur retournée par l'API.", "error");
         document.getElementById('alerts-count').textContent = "Erreur";}
 });
 

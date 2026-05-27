@@ -215,6 +215,7 @@ header h1 {
 .map-status.loading { background-color: #f39c12; } /* Orange pour la recherche */
 .map-status.error { background-color: #e74c3c; }   /* Rouge pour l'ereur */
 .map-status.info { background-color: #3498db; }    /* Bleu pour info/aucun résultats */
+.map-status.success { background-color: #2ecc71; } /* Vert pour le succès */
 
 
 .widget-container {
