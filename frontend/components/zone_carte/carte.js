@@ -170,6 +170,8 @@ function afficherDonneesSurCarte(donnees) {
             }
         }
     });
+
+    return pointsVus.size; // On renvoie le nombre de points uniques
 }
 
 // ==========================================================================
@@ -201,12 +203,15 @@ map.on(L.Draw.Event.CREATED, async function (event) {
         return;
     }
 
+    // On stocke le nombre de points uniques retourné par la fonction
+    const nbPointsUniques = afficherDonneesSurCarte(alertes);
+
     // Affichage des points
     afficherDonneesSurCarte(alertes);
 
     // Mise à jours
     const badgeAlertes = document.getElementById('alerts-count');
-    if (badgeAlertes) {
-        badgeAlertes.textContent = alertes.length;
-    }
+        if (badgeAlertes) {
+            badgeAlertes.textContent = nbPointsUniques; 
+        }
 });
