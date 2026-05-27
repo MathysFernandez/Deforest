@@ -5,8 +5,11 @@
 // le tableau c'est pour donner la position initiale et le 2 pour le zoom
 const map = L.map('maCarte', {
     attributionControl: false,
-    zoomControl: false
-}).setView([20, 0], 2);
+    zoomControl: false,
+    maxBounds: [[-90, -180], [90, 180]], // Limite le défilement aux coordonnées réelles de la Terre
+    maxBoundsViscosity: 1.0,             // Bloque fermement la caméra aux limites (pas d'effet rebond)
+    minZoom: 3                         // Permet de voir le globe en entier (avec les bandes sur les côtés)
+}).setView([20, 0], 3);
 
 // ==========================================================================
 //   ajout des tuiles (CartoDB Dark Matter <- fournisseur)
@@ -21,7 +24,8 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     subdomains: 'abcd',
 
     maxZoom: 18, // zoom maximum
-    minZoom: 2   // éviter de dézoomer à l'infini
+    minZoom: 3,  // éviter de dézoomer à l'infini
+    noWrap: true // Empêche la répétition horizontale de la carte
 
 }).addTo(map);
 
