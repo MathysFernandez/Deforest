@@ -105,10 +105,6 @@ function addDeforestationPoint(lat, lng, data = {}) {
 //   TEST CLUSTERING AMAZONIE
 // ==========================================================================
 
-addDeforestationPoint(-3.4653, -62.2159, {
-    region: "Amazonie Nord",
-    loss: "1200 hectares"
-});
 
 addDeforestationPoint(-3.4753, -62.2259, {
     region: "Amazonie Sud",
