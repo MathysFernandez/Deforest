@@ -73,6 +73,17 @@ header h1 {
     color: var(--accent-alert); 
 }
 
+.logo-container {
+    display:flex;
+    flex-direction: row;
+    
+}
+
+.logo-container img {
+    width: 30px;
+    height: 30px;
+}
+
 /* ==========================================================================
     Le Layout du tableau de bord
    ========================================================================== */
