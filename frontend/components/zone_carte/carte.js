@@ -55,6 +55,7 @@ console.log("Carte initialisée !");
 const drawnItems = new L.FeatureGroup();
 map.addLayer(drawnItems);
 
+// couleur pour la selection manuelle
 const drawControl = new L.Control.Draw({
     draw: {
         polygon: false,
@@ -99,12 +100,12 @@ const deforestationIcon = L.icon({
 
 function addDeforestationPoint(lat, lng, data = {}) {
 
-    // création du marqueur
+    // creation du marqueur
     const marker = L.marker([lat, lng], {
     icon: deforestationIcon
 });
 
-    // contenu du popup
+    // contenu popup
     const popupContent = `
         <div style="font-family: Quicksand, sans-serif;">
 
@@ -171,7 +172,7 @@ map.on(L.Draw.Event.CREATED, async function (event) {
 
     console.log("Nouvelle recherche dans la zone :", { sud, ouest, nord, est });
 
-    // Appelapi.js avec les nouvelles coordonnée
+    // Appel api.js avec les nouvelles coordonnée
     const alertes = await fetchDeforestationData(sud, ouest, nord, est);
 
     if (alertes.length === 0) {
@@ -180,10 +181,10 @@ map.on(L.Draw.Event.CREATED, async function (event) {
         return;
     }
 
-    // Affichage des point
+    // Affichage des points
     afficherDonneesSurCarte(alertes);
 
-    // Mise à jour
+    // Mise à jours
     const badgeAlertes = document.getElementById('alerts-count');
     if (badgeAlertes) {
         badgeAlertes.textContent = alertes.length;
