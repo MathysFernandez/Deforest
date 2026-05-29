@@ -16,17 +16,12 @@ const map = L.map('maCarte', {
 // ==========================================================================
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-
     // les attributions sont cachées pour conserver l'ergonomie du site
-    attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
-
     maxZoom: 18, // zoom maximum
     minZoom: 3,
     noWrap: true //pas de map infini
-
 }).addTo(map);
 
 // ==========================================================================
@@ -81,21 +76,15 @@ const drawControl = new L.Control.Draw({
 });
 map.addControl(drawControl);
 
-
-
-
 // ==========================================================================
 //   Icône personnalisée des points
 // ==========================================================================
 
 const deforestationIcon = L.icon({
-
     iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
-
     iconSize: [18, 18], // taille de l'icône
     iconAnchor: [9, 18], // point d'ancrage
     popupAnchor: [0, -18]
-
 });
 
 // ==========================================================================
@@ -103,30 +92,25 @@ const deforestationIcon = L.icon({
 // ==========================================================================
 
 function addDeforestationPoint(lat, lng, data = {}) {
-
     // creation du marqueur
     const marker = L.marker([lat, lng], {
-    icon: deforestationIcon
-});
+        icon: deforestationIcon
+    });
 
     // contenu popup
     const popupContent = `
         <div style="font-family: Quicksand, sans-serif;">
-
             <h3 style="margin-bottom: 8px;">
                 🌳 Zone de déforestation
             </h3>
-
             <p>
                 <strong>Région :</strong>
                 ${data.region || "Inconnue"}
             </p>
-
             <p>
                 <strong>Perte :</strong>
                 ${data.loss || "Non renseignée"}
             </p>
-
         </div>
     `;
 
@@ -137,15 +121,16 @@ function addDeforestationPoint(lat, lng, data = {}) {
     marker.addTo(deforestationLayer);
 }
 
-
 // ==========================================================================
 //   Fonction pour parcourir les données SQL et créer les marqueurs
 // ==========================================================================
 
-
+// Ton travail : on garde la mémoire à l'extérieur pour ne pas perdre l'historique !
 const pointsVus = new Set();
 
 function afficherDonneesSurCarte(donnees) {
+    // On ne met PAS de clearLayers() ici pour conserver les anciens points
+
     donnees.forEach(point => {
         if (point.latitude && point.longitude) {
             
@@ -153,7 +138,7 @@ function afficherDonneesSurCarte(donnees) {
             const lngArrondie = point.longitude.toFixed(3);
             const coordKey = `${latArrondie},${lngArrondie}`;
 
-            // Si le point n'a JAMAIS été vu on l'affiche
+            // Si le point n'a JAMAIS été vu, on l'affiche
             if (!pointsVus.has(coordKey)) {
                 
                 pointsVus.add(coordKey);
@@ -165,6 +150,26 @@ function afficherDonneesSurCarte(donnees) {
             }
         }
     });
+
+    // On renvoie la taille totale de l'historique
+    return pointsVus.size; 
+}
+
+// ==========================================================================
+//   Gestion de l'interface utilisateur (Statut de l'API)
+// ==========================================================================
+// Le travail de ton collègue : les notifications sur la carte
+function setStatus(message, type) {
+    const statusDiv = document.getElementById('map-status');
+    if (!statusDiv) return;
+
+    if (!message) {
+        statusDiv.className = 'map-status hidden';
+        return;
+    }
+
+    statusDiv.textContent = message;
+    statusDiv.className = `map-status ${type}`;
 }
 
 // ==========================================================================
@@ -185,21 +190,71 @@ map.on(L.Draw.Event.CREATED, async function (event) {
     const ouest = limites.getWest();
     const est = limites.getEast();
 
+    // Notification de la recherche
     console.log("Nouvelle recherche dans la zone :", { sud, ouest, nord, est });
+    
+    // Changement d'état sur l'UI
+    setStatus("⏳ API en recherche...", "loading");
+    document.getElementById('alerts-count').textContent = "..."; 
 
-    // Appel api.js avec les nouvelles coordonnée
-    const alertes = await fetchDeforestationData(sud, ouest, nord, est);
+    try {
+        // Appel api.js avec les nouvelles coordo
+        const reponseAPI = await fetchDeforestationData(sud, ouest, nord, est);
+        
+        // On extrait le vrai tableau 
+        const alertes = reponseAPI.data || reponseAPI || [];
 
-    if (alertes.length === 0) {
-        return;
-    }
+        if (!alertes || alertes.length === 0) {
+            // Ton travail : on ne supprime PAS les anciens points si la zone est vide
+            
+            // On remet le compteur à sa vraie valeur (le total de l'historique)
+            document.getElementById('alerts-count').textContent = deforestationLayer.getLayers().length;
 
-    // Affichage des points
-    afficherDonneesSurCarte(alertes);
+            console.log("Aucun résultat");
+            setStatus("ℹ️ Aucun résultat trouvé dans cette zone.", "info");
 
-    // Mise à jours
-    const badgeAlertes = document.getElementById('alerts-count');
-        if (badgeAlertes) {
-            badgeAlertes.textContent = deforestationLayer.getLayers().length; 
+            // Masque le message au bout de 3s
+            setTimeout(() => setStatus("", ""), 3000);
+            return;
         }
+
+        // On affiche les points
+        afficherDonneesSurCarte(alertes);
+        
+        // Ton travail : on compte TOUS les points actuellement affichés pour l'historique
+        const nbTotalPoints = deforestationLayer.getLayers().length;
+
+        // On met à jour la bulle de statut avec le succès
+        setStatus(`✅ Nouveaux résultats ajoutés !`, "success");
+        setTimeout(() => setStatus("", ""), 3000);
+
+        // Mise à jour du badge avec le total de l'historique
+        const badgeAlertes = document.getElementById('alerts-count');
+        if (badgeAlertes) {
+            badgeAlertes.textContent = nbTotalPoints;
+        }
+    }
+    catch(error) {
+        console.error("Erreur lors de la récupération des données :", error);
+        setStatus("❌ Erreur retournée par l'API.", "error");
+        document.getElementById('alerts-count').textContent = "Erreur";
+    }
+});
+
+    // ==========================================================================
+    //   Vidage de la carte via la poubelle "Clear All"
+    // ==========================================================================
+
+    map.on(L.Draw.Event.DELETED, function () {
+        // 1. On efface les points rouges de la carte
+        deforestationLayer.clearLayers();
+        
+        pointsVus.clear();
+        
+        // compteur à zéro
+        const badgeAlertes = document.getElementById('alerts-count');
+        if (badgeAlertes) badgeAlertes.textContent = 0;
+
+        setStatus("🧹 Carte réinitialisée", "info");
+        setTimeout(() => setStatus("", ""), 3000);
 });
