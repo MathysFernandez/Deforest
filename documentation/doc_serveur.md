@@ -20,13 +20,10 @@ mot de passe : simpsons
 
 ### 1. Remplissez la barre de connexion rapide en haut avec ces informations :
 
-Hôte : sftp://192.168.110.132
-
-Identifiant : omer
-
-Mot de passe : simpsons
-
-Port : 22
+- Hôte : sftp://192.168.110.132
+- Identifiant : omer
+- Mot de passe : simpsons
+- Port : 22
 
 ### 2. Cliquez sur "Connexion rapide". Maintenant glisser-déposer vos fichiers.
 
@@ -48,14 +45,27 @@ Port : 22
 
 7. Une fois connecté, allez dans l'explorateur de fichiers de VS Code et faites "Open Folder" pour ouvrir le dossier du projet.
 
-# 4. Mettre à jour le site public (Serveur Apache)
 
-Le site est hébergé en permanence par un serveur web Apache. Lorsque vous faites des modifications dans le code via VS Code, elles ne s'affichent pas automatiquement sur le site public. Il faut les copier dans le dossier d'Apache.
 
+# 4. Déployer les mises à jour (Frontend & Backend)
+Le projet est divisé en deux parties qui doivent toutes les deux tourner sur le serveur.
+
+### 4.1 Mettre à jour le site public (Serveur Apache - Frontend)
 Dans le terminal connecté au serveur, lancez cette commande pour déployer les modifications :
 
-
 `sudo cp -r ~/deforest/frontend/* /var/www/html/`
+
+
+### 4.2 Lancer l'API (Serveur Node.js - Backend)
+Le serveur Apache ne gère pas l'API Global Forest Watch. Il faut allumer notre propre backend.
+```bash
+    cd ~/deforest/backend   
+    npm install   
+    node server.js   
+```
+
+> [!warning] Assurez-vous d'avoir bien transféré le fichier `.env` dans ce dossier via FileZilla au préalable.   
+
 
 # 5. Afficher le site 
 
