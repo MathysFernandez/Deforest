@@ -50,7 +50,6 @@ Les recherches ne sont pas intégré au `CHANGELOG.md`.
 ## [0.3] Finalisation - 2026-30-05
 
 ### 🚀 added
-- Modification du système de recherche API avec une selection de zone manuel au lieu d'une selection par zoom.
 - Ajout d'un compte dans le repertoire du projet.
 - Ajout d'une page Home au wiki
 - Ajout du `CHANGELOG.md`.
@@ -61,8 +60,23 @@ Les recherches ne sont pas intégré au `CHANGELOG.md`.
 ### ♻️ changed
 - Les points doublons recu par l'API ne sont plus affiché en double. (Correction des données)
 - Mise a jour du readme
+- Modification pour des commentaires plus clair pour les développeurs.
+- 
 
 ### 🐛 fixed
 - Correction sur les coordonnées des points affichés après séparation des points regroupés.
 - Résolution du bug lié au manque de l'icone.
+
+
+---
+## [0.4] Optionnal - 2026-XX-XX
+
+### 🚀 added
+- Modification du système de recherche API avec une selection de zone manuel au lieu d'une selection par zoom.
+
+
+### ♻️ changed
+- 
+
+### 🐛 fixed
 - 
