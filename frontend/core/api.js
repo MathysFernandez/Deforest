@@ -12,11 +12,10 @@ async function fetchDeforestationData(sud, ouest, nord, est) {
             throw new Error(`Erreur backend : ${response.status}`);
         }
 
-        const jsonResponse = await response.json();
-        return jsonResponse.data || [];
+        return await response.json();
 
     } catch (error) {
         console.error("Erreur récupération backend :", error);
-        return [];
+        throw error;
     }
 }

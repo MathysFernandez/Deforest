@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
     <link rel="stylesheet" href="core/reset.css">
     <link rel="stylesheet" href="core/global.css">
     <link rel="stylesheet" href="components/zone_carte/carte.css">
@@ -18,12 +19,13 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js" defer></script>
+
 
     <script src="core/api.js" defer></script>
     <script src="components/zone_carte/carte.js" defer></script>
     <script src="components/widget_1/evolution.js" defer></script>
-    <script src="components/widget_2/carbone.js" defer></script>
-    <script src="components/widget_3/impact.js" defer></script>
+    <script src="components/widgets/widgets.js" defer></script>
     <script src="core/main.js" defer></script>
 
 </head>
@@ -31,7 +33,7 @@
 
     <header>
         <div class="logo-container">
-            <img src="assets/img/logo.png" alt="Logo" class="logo">
+            <img src="assets/img/logo.png"  alt="Logo" class="logo">
             <h1>Explorateur Mondial de Déforestation</h1>
         </div>
         <div class="alerts-badge">
@@ -44,6 +46,7 @@
             <!-- Vue Carte -->
             <section class="content-section active" id="view-carte">
                 <div class="map-section">
+                    <div id="map-status" class="map-status hidden"></div>
                     <div id="maCarte"></div>
                 </div>
             </section>

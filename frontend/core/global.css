@@ -72,6 +72,21 @@ header h1 {
     font-weight: 600;
     color: var(--accent-alert); 
 }
+/*logo conteneur*/
+.logo-container {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/*logo*/
+.logo-container img {
+    /*taille de l'image fixe*/
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+}
+
 
 /* ==========================================================================
     Le Layout du tableau de bord
@@ -174,6 +189,34 @@ header h1 {
     display: flex;
     flex-direction: column;
 }
+
+
+/* Styles pour la bulle de statut de l'API */
+.map-status {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; /* Permet de passer au-dessus de la carte Leaflet */
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    transition: opacity 0.3s ease;
+}
+
+.map-status.hidden {
+    display: none;
+}
+
+/* Couleurs selon l'état XD */
+.map-status.loading { background-color: #f39c12; } /* Orange pour la recherche */
+.map-status.error { background-color: #e74c3c; }   /* Rouge pour l'ereur */
+.map-status.info { background-color: #3498db; }    /* Bleu pour info/aucun résultats */
+.map-status.success { background-color: #2ecc71; } /* Vert pour le succès */
+
 
 .widget-container {
     background-color: var(--panel-wood);
