@@ -142,33 +142,29 @@ function addDeforestationPoint(lat, lng, data = {}) {
 //   Fonction pour parcourir les données SQL et créer les marqueurs
 // ==========================================================================
 
+
+const pointsVus = new Set();
+
 function afficherDonneesSurCarte(donnees) {
-    // On sort le "carnet" pour qu'il garde en mémoire TOUS les points de la session
-    const pointsVus = new Set();
-
-    function afficherDonneesSurCarte(donnees) {
-    // deforestationLayer.clearLayers(); 
-
-        donnees.forEach(point => {
-            if (point.latitude && point.longitude) {
+    donnees.forEach(point => {
+        if (point.latitude && point.longitude) {
             
-                const latArrondie = point.latitude.toFixed(3);
-                const lngArrondie = point.longitude.toFixed(3);
-                const coordKey = `${latArrondie},${lngArrondie}`;
+            const latArrondie = point.latitude.toFixed(3);
+            const lngArrondie = point.longitude.toFixed(3);
+            const coordKey = `${latArrondie},${lngArrondie}`;
 
-                // Si le point n'a JAMAIS été vu on l'affiche
-                if (!pointsVus.has(coordKey)) {
+            // Si le point n'a JAMAIS été vu on l'affiche
+            if (!pointsVus.has(coordKey)) {
                 
-                    pointsVus.add(coordKey);
+                pointsVus.add(coordKey);
 
-                    addDeforestationPoint(point.latitude, point.longitude, {
-                        region: "Alerte Détectée",
-                        loss: point.gfw_integrated_alerts__confidence === 'confirmed' ? "Confirmée" : "Suspectée"
-                    });
-                }
+                addDeforestationPoint(point.latitude, point.longitude, {
+                    region: "Alerte Détectée",
+                    loss: point.gfw_integrated_alerts__confidence === 'confirmed' ? "Confirmée" : "Suspectée"
+                });
             }
-        });
-    }
+        }
+    });
 }
 
 // ==========================================================================
