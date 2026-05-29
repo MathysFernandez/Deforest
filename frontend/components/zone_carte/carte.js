@@ -70,7 +70,8 @@ const drawControl = new L.Control.Draw({
     },
     edit: {
         featureGroup: drawnItems,
-        remove: true
+        edit: false,
+        remove: false
     }
 });
 map.addControl(drawControl);
@@ -124,27 +125,23 @@ function addDeforestationPoint(lat, lng, data = {}) {
 //   Fonction pour parcourir les données SQL et créer les marqueurs
 // ==========================================================================
 
-function afficherDonneesSurCarte(donnees) {
-    deforestationLayer.clearLayers(); 
+// Ton travail : on garde la mémoire à l'extérieur pour ne pas perdre l'historique !
+const pointsVus = new Set();
 
-    // On crée un "carnet" pour noter les points qu'on a déjà affichés
-    const pointsVus = new Set();
-    let countUniques = 0;
+function afficherDonneesSurCarte(donnees) {
+    // On ne met PAS de clearLayers() ici pour conserver les anciens points
 
     donnees.forEach(point => {
         if (point.latitude && point.longitude) {
-
-            // On arrondit les coordonnées
+            
             const latArrondie = point.latitude.toFixed(3);
             const lngArrondie = point.longitude.toFixed(3);
-            
-            // On crée une clé unique pour cette position
             const coordKey = `${latArrondie},${lngArrondie}`;
 
-            // Si cette zone précise n'a pas encore de point, on l'ajoute
+            // Si le point n'a JAMAIS été vu, on l'affiche
             if (!pointsVus.has(coordKey)) {
-                pointsVus.add(coordKey); 
-                countUniques++;
+                
+                pointsVus.add(coordKey);
 
                 addDeforestationPoint(point.latitude, point.longitude, {
                     region: "Alerte Détectée",
@@ -154,13 +151,14 @@ function afficherDonneesSurCarte(donnees) {
         }
     });
 
-    return countUniques; // On renvoie le nombre de points uniques
+    // On renvoie la taille totale de l'historique
+    return pointsVus.size; 
 }
 
 // ==========================================================================
 //   Gestion de l'interface utilisateur (Statut de l'API)
 // ==========================================================================
-
+// Le travail de ton collègue : les notifications sur la carte
 function setStatus(message, type) {
     const statusDiv = document.getElementById('map-status');
     if (!statusDiv) return;
@@ -203,13 +201,14 @@ map.on(L.Draw.Event.CREATED, async function (event) {
         // Appel api.js avec les nouvelles coordo
         const reponseAPI = await fetchDeforestationData(sud, ouest, nord, est);
         
-        // On extrait le vrai tableau (souvent contenu dans reponseAPI.data)
-        // S'il n'y a pas de .data, on prend la réponse brute, sinon un tableau vide
+        // On extrait le vrai tableau 
         const alertes = reponseAPI.data || reponseAPI || [];
 
         if (!alertes || alertes.length === 0) {
-            deforestationLayer.clearLayers();
-            document.getElementById('alerts-count').textContent = 0;
+            // Ton travail : on ne supprime PAS les anciens points si la zone est vide
+            
+            // On remet le compteur à sa vraie valeur (le total de l'historique)
+            document.getElementById('alerts-count').textContent = deforestationLayer.getLayers().length;
 
             console.log("Aucun résultat");
             setStatus("ℹ️ Aucun résultat trouvé dans cette zone.", "info");
@@ -219,19 +218,20 @@ map.on(L.Draw.Event.CREATED, async function (event) {
             return;
         }
 
-        // On filtre et on compte les points uniques
-        const nbPointsUniques = afficherDonneesSurCarte(alertes);
+        // On affiche les points
+        afficherDonneesSurCarte(alertes);
+        
+        // Ton travail : on compte TOUS les points actuellement affichés pour l'historique
+        const nbTotalPoints = deforestationLayer.getLayers().length;
 
         // On met à jour la bulle de statut avec le succès
-        setStatus(`✅ ${nbPointsUniques} résultats trouvés !`, "success");
-
-        // Masque le message de succès au bout de 3s
+        setStatus(`✅ Nouveaux résultats ajoutés !`, "success");
         setTimeout(() => setStatus("", ""), 3000);
 
-        // Mise à jour du badge avec le nombre filtré (et non le total brut)
+        // Mise à jour du badge avec le total de l'historique
         const badgeAlertes = document.getElementById('alerts-count');
         if (badgeAlertes) {
-            badgeAlertes.textContent = nbPointsUniques;
+            badgeAlertes.textContent = nbTotalPoints;
         }
     }
     catch(error) {
@@ -240,3 +240,48 @@ map.on(L.Draw.Event.CREATED, async function (event) {
         document.getElementById('alerts-count').textContent = "Erreur";
     }
 });
+
+// ==========================================================================
+//   Bouton "Poubelle" personnalisé (Un seul clic pour tout vider)
+// ==========================================================================
+
+const customTrashControl = L.Control.extend({
+    options: {
+        position: 'topleft'
+    },
+    onAdd: function() {
+        // recup icone via lextension leaflet.draw
+        const container = L.DomUtil.create('div', 'leaflet-draw-toolbar leaflet-bar leaflet-control');
+        const button = L.DomUtil.create('a', 'leaflet-draw-edit-remove', container);
+        
+        button.href = '#';
+        button.title = 'Tout effacer d\'un clic';
+
+        // L'action suite au clic (le code reste exactement le même)
+        L.DomEvent.on(button, 'click', function(e) {
+            L.DomEvent.stop(e); 
+            
+            // 1. Efface le rectangle
+            drawnItems.clearLayers();
+            
+            // 2. Efface les points rouges
+            deforestationLayer.clearLayers();
+            
+            // 3. Vide la mémoire
+            pointsVus.clear();
+            
+            // 4. Compteur à zéro
+            const badgeAlertes = document.getElementById('alerts-count');
+            if (badgeAlertes) badgeAlertes.textContent = 0;
+
+            // 5. Notification
+            setStatus("🧹 Carte réinitialisée", "info");
+            setTimeout(() => setStatus("", ""), 3000);
+        });
+
+        return container;
+    }
+});
+
+// ajoute notre nouvelle poubelle à la carte
+map.addControl(new customTrashControl());
