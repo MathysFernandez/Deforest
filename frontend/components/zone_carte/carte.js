@@ -247,32 +247,27 @@ map.on(L.Draw.Event.CREATED, async function (event) {
 
 const customTrashControl = L.Control.extend({
     options: {
-        position: 'topleft' // Place la poubelle juste sous l'outil de dessin
+        position: 'topleft'
     },
     onAdd: function() {
-        // On crée un bouton
-        const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
-        const button = L.DomUtil.create('a', '', container);
+        // recup icone via lextension leaflet.draw
+        const container = L.DomUtil.create('div', 'leaflet-draw-toolbar leaflet-bar leaflet-control');
+        const button = L.DomUtil.create('a', 'leaflet-draw-edit-remove', container);
         
         button.href = '#';
         button.title = 'Tout effacer d\'un clic';
-        button.innerHTML = '🗑️'; 
-        button.style.fontSize = '18px';
-        button.style.textAlign = 'center';
-        button.style.lineHeight = '30px';
-        button.style.textDecoration = 'none';
 
-        // L'action suite a clic
+        // L'action suite au clic (le code reste exactement le même)
         L.DomEvent.on(button, 'click', function(e) {
-            L.DomEvent.stop(e); // Empêche la carte de cliquer "à travers" le bouton
+            L.DomEvent.stop(e); 
             
-            // 1. fface le rectangle
+            // 1. Efface le rectangle
             drawnItems.clearLayers();
             
-            // 2. efface les points rouges
+            // 2. Efface les points rouges
             deforestationLayer.clearLayers();
             
-            // 3. vide la mémoire
+            // 3. Vide la mémoire
             pointsVus.clear();
             
             // 4. Compteur à zéro
