@@ -246,3 +246,23 @@ header h1 {
     border-radius: calc(var(--radius-cozy) - 4px); 
     z-index: 1;
 }
+
+/* ==========================================================================
+    Style des chiffres géants
+   ========================================================================== */
+.counter {
+    font-size: 5rem; 
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
+    color: var(--accent-alert);
+    margin: 20px 0;
+    text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2); 
+    text-align: center;
+}
+
+.widget-container p {
+    font-size: 1.2rem;
+    color: var(--text-cream);
+    opacity: 0.8; 
+    text-align: center;
+}
