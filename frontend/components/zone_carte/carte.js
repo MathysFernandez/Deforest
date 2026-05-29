@@ -201,7 +201,11 @@ map.on(L.Draw.Event.CREATED, async function (event) {
 
     try {
         // Appel api.js avec les nouvelles coordo
-        const alertes = await fetchDeforestationData(sud, ouest, nord, est);
+        const reponseAPI = await fetchDeforestationData(sud, ouest, nord, est);
+        
+        // On extrait le vrai tableau (souvent contenu dans reponseAPI.data)
+        // S'il n'y a pas de .data, on prend la réponse brute, sinon un tableau vide
+        const alertes = reponseAPI.data || reponseAPI || [];
 
         if (!alertes || alertes.length === 0) {
             deforestationLayer.clearLayers();
