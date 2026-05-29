@@ -71,7 +71,7 @@ const drawControl = new L.Control.Draw({
     edit: {
         featureGroup: drawnItems,
         edit: false,
-        remove: true
+        remove: false
     }
 });
 map.addControl(drawControl);
@@ -241,20 +241,52 @@ map.on(L.Draw.Event.CREATED, async function (event) {
     }
 });
 
-    // ==========================================================================
-    //   Vidage de la carte via la poubelle "Clear All"
-    // ==========================================================================
+// ==========================================================================
+//   Bouton "Poubelle" personnalisé (Un seul clic pour tout vider)
+// ==========================================================================
 
-    map.on(L.Draw.Event.DELETED, function () {
-        // 1. On efface les points rouges de la carte
-        deforestationLayer.clearLayers();
+const customTrashControl = L.Control.extend({
+    options: {
+        position: 'topleft' // Place la poubelle juste sous l'outil de dessin
+    },
+    onAdd: function() {
+        // On crée un bouton
+        const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+        const button = L.DomUtil.create('a', '', container);
         
-        pointsVus.clear();
-        
-        // compteur à zéro
-        const badgeAlertes = document.getElementById('alerts-count');
-        if (badgeAlertes) badgeAlertes.textContent = 0;
+        button.href = '#';
+        button.title = 'Tout effacer d\'un clic';
+        button.innerHTML = '🗑️'; 
+        button.style.fontSize = '18px';
+        button.style.textAlign = 'center';
+        button.style.lineHeight = '30px';
+        button.style.textDecoration = 'none';
 
-        setStatus("🧹 Carte réinitialisée", "info");
-        setTimeout(() => setStatus("", ""), 3000);
+        // L'action suite a clic
+        L.DomEvent.on(button, 'click', function(e) {
+            L.DomEvent.stop(e); // Empêche la carte de cliquer "à travers" le bouton
+            
+            // 1. fface le rectangle
+            drawnItems.clearLayers();
+            
+            // 2. efface les points rouges
+            deforestationLayer.clearLayers();
+            
+            // 3. vide la mémoire
+            pointsVus.clear();
+            
+            // 4. Compteur à zéro
+            const badgeAlertes = document.getElementById('alerts-count');
+            if (badgeAlertes) badgeAlertes.textContent = 0;
+
+            // 5. Notification
+            setStatus("🧹 Carte réinitialisée", "info");
+            setTimeout(() => setStatus("", ""), 3000);
+        });
+
+        return container;
+    }
 });
+
+// ajoute notre nouvelle poubelle à la carte
+map.addControl(new customTrashControl());
