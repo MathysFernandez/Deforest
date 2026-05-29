@@ -70,7 +70,7 @@ Chaque utilisateur qui clone le projet doit :
 2. le placer dans le dossier `backend/`,
 3. utiliser ses propres clés API si nécessaire.
 
-> [!warning] Sans le fichier `.env`, le backend ne peut pas démarrer correctement et les requêtes API échouent.
+> [!warning] Sans le fichier `.env`, le backend ne peut pas démarrer correctement et les requêtes API échouent.    
 
 ---
 
@@ -120,7 +120,7 @@ Choisir la version **LTS** recommandée.
 ## 2. Installer Node.js
 
 Lancer l’installateur `.msi` puis :
-- cliquer sur *Next*,
+- cliquer sur *NEXT*,
 - accepter les conditions,
 - laisser les options par défaut,
 - terminer l’installation.
@@ -145,6 +145,7 @@ Les versions installées doivent apparaître dans le terminal.
 ## 1. Installer npm et Node.js
 
 ```bash
+sudo apt update
 sudo apt install npm
 ```
 
@@ -157,7 +158,7 @@ npm --version
 node -v
 ```
 
-> Les versions installées doivent apparaître dans le terminal.
+> Les versions installées doivent apparaître dans le terminal.    
 
 ---
 
@@ -198,3 +199,14 @@ Cela permet :
 - d’éviter des fichiers trop lourds sur GitLab,
 - de garder un projet propre,
 - d’assurer que chaque utilisateur installe les bonnes versions.
+
+
+# 🚀 Lancer le serveur
+
+> [!tip] Une fois le fichier `.env` configuré et les dépendances installées, lancez le serveur avec :   
+
+```bash
+node server.js
+```
+
+Le terminal devrait afficher: Serveur lancé sur le port 3000. 
