@@ -10,9 +10,8 @@ Ce document explique le fonctionnement de l’API utilisée dans le projet, la s
 
 Le projet utilise l’API officielle de **Global Forest Watch (GFW)** afin de récupérer des données de déforestation mondiale en temps réel.
 
-Documentation officielle :
 
-https://data-api.globalforestwatch.org/
+[Documentation officielle](https://data-api.globalforestwatch.org/)
 
 ---
 
@@ -55,8 +54,8 @@ Les informations sensibles sont stockées dans un fichier `.env` à placer dans 
 Exemple :
 
 ```env
-GFW_API_KEY=NOTRE_CLE_API 
-GFW_BEARER_TOKEN=NOTRE_TOKEN
+GFW_API_KEY=  <NOTRE_CLE_API> 
+GFW_BEARER_TOKEN=  <NOTRE_TOKEN>
 PORT=3000
 ```
 
@@ -71,7 +70,7 @@ Chaque utilisateur qui clone le projet doit :
 2. le placer dans le dossier `backend/`,
 3. utiliser ses propres clés API si nécessaire.
 
-Sans le fichier `.env`, le backend ne peut pas démarrer correctement et les requêtes API échouent.
+> [!warning] Sans le fichier `.env`, le backend ne peut pas démarrer correctement et les requêtes API échouent.
 
 ---
 
@@ -85,16 +84,6 @@ node_modules/
 ```
 
 Cela évite de publier les clés sensibles sur GitLab.
-
----
-
-# ⚙️ Installation du backend
-
-Le backend utilise **Node.js** et **Express.js**.
-
-Chaque utilisateur doit installer les dépendances du projet après avoir cloné le dépôt Git.
-
----
 
 ---
 
@@ -151,7 +140,7 @@ Les versions installées doivent apparaître dans le terminal.
 
 ---
 
-# 🐧 Installation sous Linux (Ubuntu/Debian)
+# 🐧 Installation sous Linux (Ubuntu)
 
 ## 1. Installer npm et Node.js
 
@@ -168,7 +157,7 @@ npm --version
 node -v
 ```
 
-Les versions installées doivent apparaître dans le terminal.
+> Les versions installées doivent apparaître dans le terminal.
 
 ---
 
