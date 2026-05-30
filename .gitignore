@@ -3,3 +3,5 @@ node_modules/
 
 # Ignorer les fichiers tempo de LibreOffice
 .~lock.*#
+
+.vscode/
