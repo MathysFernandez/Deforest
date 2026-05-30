@@ -13,8 +13,6 @@
     <link rel="stylesheet" href="core/global.css">
     <link rel="stylesheet" href="components/zone_carte/carte.css">
     <link rel="stylesheet" href="components/widget_1/evolution.css">
-    <link rel="stylesheet" href="components/widget_2/carbone.css">
-    <link rel="stylesheet" href="components/widget_3/impact.css">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
@@ -69,9 +67,11 @@
             <!-- Vue Carbone -->
             <section class="content-section" id="view-carbone">
                 <div class="widget-container">
-                    <h3>☁️ Dette Carbone</h3>
-                    <span class="tooltip-icon" data-tooltip="Surface : (Alertes × 0.0009 km²) × 25 000 tonnes">ℹ️</span>
-
+                    <h3>
+                        ☁️ Dette Carbone 
+                        <span class="tooltip-icon" data-tooltip="Surface (Alertes × 0.0009 km²) × 25 000 tonnes">ℹ️</span>
+                    </h3>
+                
                     <div class="jauge-container">
                         <div class="jauge-wrapper">
                             <canvas id="jaugeCarbone"></canvas>
@@ -79,7 +79,37 @@
                         <div id="compteur-carbone" class="counter absolute-center">0</div>
                     </div>
                     <p>Tonnes d'éq. CO2 estimées</p>
+                
+                    <div class="carbon-context-grid">
 
+                        <div class="context-card">
+                            <h4>Fiabilité des données</h4>
+                            <div class="progress-bar-container">
+                                <div id="bar-confirmed" class="progress-bar confirmed" style="width: 0%"></div>
+                                <div id="bar-suspected" class="progress-bar suspected" style="width: 0%"></div>
+                            </div>
+                            <p id="text-reliability">0% confirmées par satellite</p>
+                        </div>
+                    
+                        <div class="context-card">
+                            <h4>Équivaut à</h4>
+                            <ul>
+                                <li>🧍 <span id="eq-citizen" class="highlight-text">0</span> Français / an</li>
+                                <li>✈️ <span id="eq-flights" class="highlight-text">0</span> vols Paris-NY</li>
+                            </ul>
+                        </div>
+                    
+                        <div class="context-card">
+                            <h4>Coût social estimé</h4>
+                            <p class="big-number">💸 <span id="eq-cost">0</span> €</p>
+                        </div>
+                    
+                        <div class="context-card">
+                            <h4>Effort de compensation</h4>
+                            <p class="big-number">🌱 <span id="eq-trees">0</span> arbres à planter</p>
+                        </div>
+                    
+                    </div>
                 </div>
             </section>
 

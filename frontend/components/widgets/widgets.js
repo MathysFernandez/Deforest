@@ -9,6 +9,11 @@ const CO2_PAR_KM2 = 25000;
 const BUDGET_CARBONE_CRITIQUE = 5000; // Limite théorique pour la jauge
 let memoireCarbone = 0;
 
+const TONNES_CO2_PAR_FRANCAIS = 9; 
+const TONNES_CO2_PAR_VOL_NY = 1; 
+const COUT_SOCIAL_EURO_PAR_TONNE = 250; 
+const TONNES_CO2_ABSORBE_PAR_ARBRE = 0.025; // 25kg par arbre
+
 let graphiqueJauge = null;
 
 function initialiserJaugeCarbone() {
@@ -100,6 +105,46 @@ function mettreAJourWidgets(nbAlertes) {
         ];
         graphiqueJauge.update();
     }
+
+    // Équivalences & Coûts
+    const eqCitoyens = Math.round(memoireCarbone / TONNES_CO2_PAR_FRANCAIS);
+    const eqVols = Math.round(memoireCarbone / TONNES_CO2_PAR_VOL_NY);
+    const eqCout = memoireCarbone * COUT_SOCIAL_EURO_PAR_TONNE;
+    const eqArbres = Math.round(memoireCarbone / TONNES_CO2_ABSORBE_PAR_ARBRE);
+
+    // Injection dans le HTML
+    const divCitizen = document.getElementById('eq-citizen');
+    const divFlights = document.getElementById('eq-flights');
+    const divCost = document.getElementById('eq-cost');
+    const divTrees = document.getElementById('eq-trees');
+
+    if (divCitizen) divCitizen.textContent = eqCitoyens.toLocaleString('fr-FR');
+    if (divFlights) divFlights.textContent = eqVols.toLocaleString('fr-FR');
+    if (divCost) divCost.textContent = eqCout.toLocaleString('fr-FR');
+    if (divTrees) divTrees.textContent = eqArbres.toLocaleString('fr-FR');
+
+    // Calcul de la fiabilité (Analyse de l'historique)
+    let alertesConfirmees = 0;
+    historique.forEach(point => {
+        // GFW renvoie souvent 'confirmed' ou 'high' pour les alertes certaines
+        if (point.gfw_integrated_alerts__confidence === 'confirmed' || 
+            point.gfw_integrated_alerts__confidence === 'high') {
+            alertesConfirmees++;
+        }
+    });
+
+    const pourcentageConfirme = nbAlertes > 0 ? Math.round((alertesConfirmees / nbAlertes) * 100) : 0;
+    const pourcentageSuspect = 100 - pourcentageConfirme;
+
+    const barConfirmed = document.getElementById('bar-confirmed');
+    const barSuspected = document.getElementById('bar-suspected');
+    const textReliability = document.getElementById('text-reliability');
+
+    if (barConfirmed && barSuspected && textReliability) {
+        barConfirmed.style.width = `${pourcentageConfirme}%`;
+        barSuspected.style.width = `${pourcentageSuspect}%`;
+        textReliability.textContent = `${pourcentageConfirme}% confirmées par satellite`;
+    }
 }
 
 // ============================================================================
@@ -120,6 +165,11 @@ document.addEventListener('DOMContentLoaded', initialiserJaugeCarbone);
 function reinitialiserWidgets() {
     // On remet la mémoire à zéro
     memoireCarbone = 0;
+    TONNES_CO2_PAR_FRANCAIS = 9; 
+    TONNES_CO2_PAR_VOL_NY = 1; 
+    COUT_SOCIAL_EURO_PAR_TONNE = 250; 
+    TONNES_CO2_ABSORBE_PAR_ARBRE = 0.025; // 25kg par arbre
+
     
     const compteurCarbone = document.getElementById('compteur-carbone');
     

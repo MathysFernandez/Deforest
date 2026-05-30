@@ -359,3 +359,78 @@ header h1 {
     word-break: break-all; 
     letter-spacing: 4px;
 }
+
+/* ==========================================================================
+    Contexte Carbone (Grille d'informations)
+   ========================================================================== */
+.carbon-context-grid {
+    display: grid;
+    grid-template-columns: 47% 47%; 
+    gap: 10px;
+    margin-top: 25px;
+    align-self: stretch; 
+}
+
+.context-card {
+    background-color: var(--bg-forest);
+    padding: 10px; 
+    border-radius: 12px;
+    border: 1px solid rgba(244, 241, 222, 0.08);
+    text-align: left;
+    overflow: hidden; 
+}
+
+.context-card h4 {
+    font-size: 0.8rem;
+    color: var(--accent-leaf);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.context-card p, .context-card ul {
+    font-size: 0.85rem;
+    color: var(--text-cream);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.big-number {
+    font-weight: 700;
+    font-size: 1rem !important; 
+    color: var(--accent-alert) !important;
+}
+
+.context-card li {
+    margin-bottom: 4px;
+}
+
+.highlight-text {
+    font-weight: 700;
+    color: var(--accent-leaf);
+}
+
+/* Style de la barre de fiabilité */
+.progress-bar-container {
+    width: 100%;
+    height: 6px;
+    background-color: rgba(244, 241, 222, 0.1);
+    border-radius: 4px;
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+
+.progress-bar {
+    height: 100%;
+    transition: width 0.8s ease;
+}
+
+.progress-bar.confirmed {
+    background-color: var(--accent-leaf); /* Vert */
+}
+
+.progress-bar.suspected {
+    background-color: var(--accent-alert); /* Terracotta */
+}
