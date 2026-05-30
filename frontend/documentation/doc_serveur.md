@@ -61,8 +61,6 @@ Dans le terminal connecté au serveur, lancez cette commande pour déployer les 
 
 http://192.168.110.132
 
-# 6. Si problème d'affichage
 
-Il faut faire CTRL + MAJ + R.
 
 

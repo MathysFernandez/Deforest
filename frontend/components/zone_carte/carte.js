@@ -127,6 +127,7 @@ function addDeforestationPoint(lat, lng, data = {}) {
 
 // Ton travail : on garde la mémoire à l'extérieur pour ne pas perdre l'historique !
 const pointsVus = new Set();
+const historiqueAlertes = [];
 
 function afficherDonneesSurCarte(donnees) {
     // On ne met PAS de clearLayers() ici pour conserver les anciens points
@@ -142,6 +143,7 @@ function afficherDonneesSurCarte(donnees) {
             if (!pointsVus.has(coordKey)) {
                 
                 pointsVus.add(coordKey);
+                historiqueAlertes.push(point);
 
                 addDeforestationPoint(point.latitude, point.longitude, {
                     region: "Alerte Détectée",
@@ -220,9 +222,13 @@ map.on(L.Draw.Event.CREATED, async function (event) {
 
         // On affiche les points
         afficherDonneesSurCarte(alertes);
+        mettreAJourGraphique(historiqueAlertes);
         
         // Ton travail : on compte TOUS les points actuellement affichés pour l'historique
         const nbTotalPoints = deforestationLayer.getLayers().length;
+        
+        // Mise à jour des compteurs (carbone et impact)
+        mettreAJourWidgets(nbTotalPoints, historiqueAlertes);
 
         // On met à jour la bulle de statut avec le succès
         setStatus(`✅ Nouveaux résultats ajoutés !`, "success");
@@ -269,6 +275,9 @@ const customTrashControl = L.Control.extend({
             
             // 3. Vide la mémoire
             pointsVus.clear();
+            historiqueAlertes.length = 0;
+            reinitialiserGraphique();
+            reinitialiserWidgets();
             
             // 4. Compteur à zéro
             const badgeAlertes = document.getElementById('alerts-count');
