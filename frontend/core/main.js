@@ -33,6 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Activer le bouton sélectionné
             button.classList.add('active');
+
+            if (viewName === 'carbone' || viewName === 'impact') {
+                if (typeof relancerAnimations === "function") {
+                    relancerAnimations();
+                }
+            }
         });
     });
 });

@@ -1,15 +1,13 @@
 // ============================================================================
 // Constantes Globales et Utilitaires (Partagés)
 // ============================================================================
-const KM2_PAR_ALERTE = 0.5; // estimation de surface par point d'alerte
+const KM2_PAR_ALERTE = 0.0009; // estimation de surface par point d'alerte
 
 // Estimation moyenne de carbone pour une forêt tropicale dense (tonnes/km²)
 const CO2_PAR_KM2 = 25000; 
 
-// Un terrain de foot ≈ 5400m² = 0.0054 km²
-const SURFACE_TERRAIN_KM2 = 0.0054;
-
-const BUDGET_CARBONE_CRITIQUE = 50000; // Limite théorique pour la jauge
+const BUDGET_CARBONE_CRITIQUE = 5000; // Limite théorique pour la jauge
+let memoireCarbone = 0;
 
 let graphiqueJauge = null;
 
@@ -90,38 +88,27 @@ function animerCompteur(element, debut, fin, duree) {
 // ============================================================================
 function mettreAJourWidgets(nbAlertes) {
     const surfaceKm2 = nbAlertes * KM2_PAR_ALERTE;
-    const tonnesCO2 = Math.round(surfaceKm2 * CO2_PAR_KM2);
-    const terrains = Math.round(surfaceKm2 / SURFACE_TERRAIN_KM2);
     
-    // 1. Mise à jour des compteurs (avec ta fonction animerCompteur)
-    const compteurCarbone = document.getElementById('compteur-carbone');
-    const compteurImpact = document.getElementById('compteur-impact');
-    
-    if (compteurCarbone) animerCompteur(compteurCarbone, 0, tonnesCO2, 500);
-    if (compteurImpact) animerCompteur(compteurImpact, 0, terrains, 500);
+    // 1. On sauvegarde les valeurs calculées en mémoire
+    memoireCarbone = Math.round(surfaceKm2 * CO2_PAR_KM2);
     
     // 2. Mise à jour de la jauge Chart.js
     if (graphiqueJauge) {
-        // Le dataset contient [Partie Remplie, Partie Vide]
         graphiqueJauge.data.datasets[0].data = [
-            tonnesCO2, 
-            Math.max(0, BUDGET_CARBONE_CRITIQUE - tonnesCO2) // Évite un total négatif
+            memoireCarbone, 
+            Math.max(0, BUDGET_CARBONE_CRITIQUE - memoireCarbone)
         ];
         graphiqueJauge.update();
     }
+}
 
-    // 3. Génération de la grille d'impact visuel
-    const impactGrid = document.getElementById('impact-grid');
-    if (impactGrid) {
-        // Limite visuelle à 60 icônes max pour ne pas faire saturer l'écran
-        const nbIcones = Math.min(terrains, 60); 
-        impactGrid.textContent = '⚽'.repeat(nbIcones);
-        
-        // Ajout de points de suspension si on dépasse la limite d'affichage
-        if (terrains > 60) {
-            impactGrid.textContent += ' ...';
-        }
-    }
+// ============================================================================
+// Fonction pour jouer l'animation à la demande
+// ============================================================================
+function relancerAnimations() {
+    const compteurCarbone = document.getElementById('compteur-carbone');
+    
+    if (compteurCarbone) animerCompteur(compteurCarbone, 0, memoireCarbone, 800);
 }
 
 // Initialise le graphique dès que le fichier est chargé par le navigateur
@@ -131,9 +118,16 @@ document.addEventListener('DOMContentLoaded', initialiserJaugeCarbone);
 // Contrôleur des Widgets : Réinitialisation
 // ============================================================================
 function reinitialiserWidgets() {
+    // On remet la mémoire à zéro
+    memoireCarbone = 0;
+    
     const compteurCarbone = document.getElementById('compteur-carbone');
-    const compteurImpact = document.getElementById('compteur-impact');
     
     if (compteurCarbone) compteurCarbone.textContent = '0';
-    if (compteurImpact) compteurImpact.textContent = '0';
+    
+    if (graphiqueJauge) {
+        graphiqueJauge.data.datasets[0].data = [0, BUDGET_CARBONE_CRITIQUE];
+        graphiqueJauge.update();
+    }
+
 }
