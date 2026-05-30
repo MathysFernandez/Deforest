@@ -228,7 +228,7 @@ map.on(L.Draw.Event.CREATED, async function (event) {
         const nbTotalPoints = deforestationLayer.getLayers().length;
         
         // Mise à jour des compteurs (carbone et impact)
-        mettreAJourWidgets(nbTotalPoints);
+        mettreAJourWidgets(nbTotalPoints, historiqueAlertes);
 
         // On met à jour la bulle de statut avec le succès
         setStatus(`✅ Nouveaux résultats ajoutés !`, "success");

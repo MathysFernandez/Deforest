@@ -91,7 +91,7 @@ function animerCompteur(element, debut, fin, duree) {
 // ============================================================================
 // Contrôleur des Widgets : Mise à jour globale
 // ============================================================================
-function mettreAJourWidgets(nbAlertes) {
+function mettreAJourWidgets(nbAlertes, historique=[]) {
     const surfaceKm2 = nbAlertes * KM2_PAR_ALERTE;
     
     // 1. On sauvegarde les valeurs calculées en mémoire
@@ -124,6 +124,10 @@ function mettreAJourWidgets(nbAlertes) {
     if (divTrees) divTrees.textContent = eqArbres.toLocaleString('fr-FR');
 
     // Calcul de la fiabilité (Analyse de l'historique)
+
+    if (historique.length > 0) {
+    console.log("🔍 Valeur brute de confiance :", historique[0].gfw_integrated_alerts__confidence);
+    }
     let alertesConfirmees = 0;
     historique.forEach(point => {
         // GFW renvoie souvent 'confirmed' ou 'high' pour les alertes certaines
