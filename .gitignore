@@ -1,2 +1,5 @@
 backend/.env
 node_modules/
+
+# Ignorer les fichiers tempo de LibreOffice
+.~lock.*#
