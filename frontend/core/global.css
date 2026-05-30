@@ -246,3 +246,191 @@ header h1 {
     border-radius: calc(var(--radius-cozy) - 4px); 
     z-index: 1;
 }
+
+/* ==========================================================================
+    Style des chiffres géants
+   ========================================================================== */
+.counter {
+    font-size: 5rem; 
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
+    color: var(--accent-alert);
+    margin: 20px 0;
+    text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2); 
+    text-align: center;
+}
+
+.widget-container p {
+    font-size: 1.2rem;
+    color: rgb(59, 42, 42);
+    opacity: 0.8; 
+    text-align: center;
+}
+
+/* Centrage du graphique et du chiffre pour le Carbone */
+.jauge-container {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jauge-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.tooltip-icon {
+    cursor: help;
+    font-size: 0.9rem;
+    margin-left: 8px;
+    position: relative;
+    display: inline-block;
+    filter: grayscale(100%); 
+    transition: filter 0.2s ease;
+}
+
+.tooltip-icon:hover {
+    filter: grayscale(0%); 
+}
+
+.tooltip-icon::after {
+    content: attr(data-tooltip); 
+    position: absolute;
+    bottom: 130%; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bg-forest);
+    color: var(--text-cream);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-family: monospace; 
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    border: 1px solid var(--accent-leaf);
+    z-index: 100;
+}
+
+.tooltip-icon::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: var(--accent-leaf) transparent transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.tooltip-icon:hover::after,
+.tooltip-icon:hover::before {
+    opacity: 1;
+    visibility: visible;
+    bottom: 150%; 
+}
+
+.absolute-center {
+    position: absolute;
+    margin: 0 !important;
+    z-index: 2;
+    font-size: 3rem; 
+}
+
+.visual-grid {
+    margin-top: 15px;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    text-align: center;
+    max-width: 80%;
+    color: var(--text-cream);
+    opacity: 0.9;
+    word-break: break-all; 
+    letter-spacing: 4px;
+}
+
+/* ==========================================================================
+    Contexte Carbone (Grille d'informations)
+   ========================================================================== */
+.carbon-context-grid {
+    display: grid;
+    grid-template-columns: 47% 47%; 
+    gap: 10px;
+    margin-top: 25px;
+    align-self: stretch; 
+}
+
+.context-card {
+    background-color: var(--bg-forest);
+    padding: 10px; 
+    border-radius: 12px;
+    border: 1px solid rgba(244, 241, 222, 0.08);
+    text-align: left;
+    overflow: hidden; 
+}
+
+.context-card h4 {
+    font-size: 0.8rem;
+    color: var(--accent-leaf);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.context-card p, .context-card ul {
+    font-size: 0.85rem;
+    color: var(--text-cream);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.big-number {
+    font-weight: 700;
+    font-size: 1rem !important; 
+    color: var(--accent-alert) !important;
+}
+
+.context-card li {
+    margin-bottom: 4px;
+}
+
+.highlight-text {
+    font-weight: 700;
+    color: var(--accent-leaf);
+}
+
+/* Style de la barre de fiabilité */
+.progress-bar-container {
+    width: 100%;
+    height: 6px;
+    background-color: rgba(244, 241, 222, 0.1);
+    border-radius: 4px;
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+
+.progress-bar {
+    height: 100%;
+    transition: width 0.8s ease;
+}
+
+.progress-bar.confirmed {
+    background-color: var(--accent-leaf); /* Vert */
+}
+
+.progress-bar.suspected {
+    background-color: var(--accent-alert); /* Terracotta */
+}

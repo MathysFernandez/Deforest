@@ -31,11 +31,9 @@ app.post('/api/alerts', async (req, res) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                // La requête SQL est bien là ! On limite à 200 pour la fluidité
-                sql: "SELECT latitude, longitude, gfw_integrated_alerts__confidence FROM data WHERE gfw_integrated_alerts__date >= '2026-04-01' LIMIT 10",
+                sql: "SELECT latitude, longitude, gfw_integrated_alerts__confidence, gfw_integrated_alerts__date FROM data LIMIT 50",
                 geometry: {
                     type: "Polygon",
-                    // On injecte dynamiquement les coordonnées
                     coordinates: [[[ouest, sud], [est, sud], [est, nord], [ouest, nord], [ouest, sud]]]
                 }
             })
