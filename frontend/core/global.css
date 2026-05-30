@@ -262,7 +262,44 @@ header h1 {
 
 .widget-container p {
     font-size: 1.2rem;
-    color: var(--text-cream);
+    color: rgb(59, 42, 42);
     opacity: 0.8; 
     text-align: center;
+}
+
+/* Centrage du graphique et du chiffre pour le Carbone */
+.jauge-container {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jauge-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.absolute-center {
+    position: absolute;
+    margin: 0 !important; /* Écrase la marge par défaut du .counter */
+    z-index: 2;
+    font-size: 3rem; /* Légèrement plus petit pour rentrer dans le cercle */
+}
+
+/* Grille visuelle pour l'impact */
+.visual-grid {
+    margin-top: 15px;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    text-align: center;
+    max-width: 80%;
+    color: var(--text-cream);
+    opacity: 0.9;
+    word-break: break-all; /* Permet aux emojis de revenir à la ligne proprement */
+    letter-spacing: 4px;
 }

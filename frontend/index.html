@@ -59,21 +59,28 @@
                 </div>
             </section>
 
-            <!-- Vue Prédiction -->
+            <!-- Vue Carbone -->
             <section class="content-section" id="view-carbone">
                 <div class="widget-container">
                     <h3>☁️ Dette Carbone</h3>
-                    <div id="compteur-carbone" class="counter">0</div>
-                    <p>Tonnes d'éq. CO2 générées</p>
+
+                    <div class="jauge-container">
+                        <div class="jauge-wrapper">
+                            <canvas id="jaugeCarbone"></canvas>
+                        </div>
+                        <div id="compteur-carbone" class="counter absolute-center">0</div>
+                    </div>
+                    <p>Tonnes d'éq. CO2 estimées</p>
                 </div>
             </section>
 
-            <!-- Vue Impact -->
             <section class="content-section" id="view-impact">
                 <div class="widget-container">
                     <h3>⚽ Impact Concret</h3>
                     <div id="compteur-impact" class="counter">0</div>
                     <p>Terrains de football détruits</p>
+
+                    <div id="impact-grid" class="visual-grid"></div>
                 </div>
             </section>
         </div>
@@ -86,7 +93,7 @@
                 📊 Évolution
             </button>
             <button class="nav-button" data-view="carbone">
-                ☁️ Prédiction
+                ☁️ Carbone
             </button>
             <button class="nav-button" data-view="impact">
                 ⚽ Impact
