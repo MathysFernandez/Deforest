@@ -1,0 +1,248 @@
+/* ==========================================================================
+    Quicksand police
+   ========================================================================== */
+@font-face {
+    font-family: 'Quicksand';
+    src: url('../assets/fonts/Quicksand-Regular.ttf') format('truetype');
+    font-weight: 400; /* Texte normal */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Quicksand';
+    src: url('../assets/fonts/Quicksand-SemiBold.ttf') format('truetype');
+    font-weight: 600; /* Titres de widgets */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Quicksand';
+    src: url('../assets/fonts/Quicksand-Bold.ttf') format('truetype');
+    font-weight: 700; /* Titre principal */
+    font-style: normal;
+}
+
+/* ==========================================================================
+    Les couleurs et le style (Cozy)
+   ========================================================================== */
+:root {
+    --bg-forest: #2B3A32;       /* Fond de la page : Vert forêt sombre */
+    --panel-wood: #3A4F41;      /* Fond des widgets : Vert plus un petit peu clair */
+    --text-cream: #F4F1DE;      /* Texte : Blanc pas très blanc */
+    --accent-leaf: #81B29A;     /* Couleur d'accentuation (titres, icônes) */
+    --accent-alert: #E07A5F;    /* terracotta(comme sur minecraft) pour les alertes */
+    
+    --spacing-layout: 24px;     /* Espacement entre les boîtes */
+    --radius-cozy: 20px;        /* Bords très arrondis */
+}
+
+/* ==========================================================================
+    Le corps du site
+   ========================================================================== */
+body {
+    background-color: var(--bg-forest);
+    color: var(--text-cream);
+    font-family: 'Quicksand', sans-serif; 
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================================================
+    Header
+   ========================================================================== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-layout);
+    background-color: var(--panel-wood);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* légère ombre en dessous */
+}
+
+header h1 {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.alerts-badge {
+    background-color: var(--bg-forest);
+    padding: 8px 16px;
+    border-radius: var(--radius-cozy);
+    font-weight: 600;
+    color: var(--accent-alert); 
+}
+/*logo conteneur*/
+.logo-container {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/*logo*/
+.logo-container img {
+    /*taille de l'image fixe*/
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+}
+
+
+/* ==========================================================================
+    Le Layout du tableau de bord
+   ========================================================================== */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px; /* contenu principal à gauche, navbar à droite */
+    gap: var(--spacing-layout);
+    padding: var(--spacing-layout);
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+    Navbar de Navigation 
+   ========================================================================== */
+.navbar {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: var(--spacing-layout);
+    background-color: var(--panel-wood);
+    border-radius: var(--radius-cozy);
+    border: 1px solid rgba(244, 241, 222, 0.05);
+    height: 90%;
+    overflow-y: auto;
+}
+
+.nav-button {
+    padding: 12px 16px;
+    background-color: var(--bg-forest);
+    color: var(--text-cream);
+    border: 1px solid rgba(244, 241, 222, 0.2);
+    border-radius: var(--radius-cozy);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    text-align: center;
+    height: 22%;
+}
+
+.nav-button:hover {
+    background-color: var(--accent-leaf);
+    color: var(--bg-forest);
+    border-color: var(--accent-leaf);
+    transform: translateX(-4px);
+}
+
+.nav-button.active {
+    background-color: var(--accent-leaf);
+    color: var(--bg-forest);
+    border-color: var(--accent-leaf);
+    box-shadow: 0 4px 12px rgba(129, 178, 154, 0.3);
+}
+
+/* ==========================================================================
+    Contenu Principal
+   ========================================================================== */
+.content-main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.content-section {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.content-section.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+    Carte et Widgets
+   ========================================================================== */
+.map-section {
+    background-color: var(--panel-wood);
+    border-radius: var(--radius-cozy);
+    padding: var(--spacing-layout);
+    border: 1px solid rgba(244, 241, 222, 0.05);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Styles pour la bulle de statut de l'API */
+.map-status {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; /* Permet de passer au-dessus de la carte Leaflet */
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    transition: opacity 0.3s ease;
+}
+
+.map-status.hidden {
+    display: none;
+}
+
+/* Couleurs selon l'état XD */
+.map-status.loading { background-color: #f39c12; } /* Orange pour la recherche */
+.map-status.error { background-color: #e74c3c; }   /* Rouge pour l'ereur */
+.map-status.info { background-color: #3498db; }    /* Bleu pour info/aucun résultats */
+.map-status.success { background-color: #2ecc71; } /* Vert pour le succès */
+
+
+.widget-container {
+    background-color: var(--panel-wood);
+    border-radius: var(--radius-cozy);
+    padding: var(--spacing-layout);
+    border: 1px solid rgba(244, 241, 222, 0.05);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.widget-container h3 {
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--accent-leaf);
+    font-size: 1.1rem;
+    text-align: center;
+    width: 100%;
+}
+
+/* style de la carte */
+#maCarte {
+    width: 100%;
+    height: 100%;
+    border-radius: calc(var(--radius-cozy) - 4px); 
+    z-index: 1;
+}

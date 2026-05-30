@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Déforestation</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+    <link rel="stylesheet" href="core/reset.css">
+    <link rel="stylesheet" href="core/global.css">
+    <link rel="stylesheet" href="components/zone_carte/carte.css">
+    <link rel="stylesheet" href="components/widget_1/evolution.css">
+    <link rel="stylesheet" href="components/widget_2/carbone.css">
+    <link rel="stylesheet" href="components/widget_3/impact.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js" defer></script>
+
+
+    <script src="core/api.js" defer></script>
+    <script src="components/zone_carte/carte.js" defer></script>
+    <script src="components/widget_1/evolution.js" defer></script>
+    <script src="components/widget_2/carbone.js" defer></script>
+    <script src="components/widget_3/impact.js" defer></script>
+    <script src="core/main.js" defer></script>
+
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="assets/img/logo.png"  alt="Logo" class="logo">
+            <h1>Explorateur Mondial de Déforestation</h1>
+        </div>
+        <div class="alerts-badge">
+            🔔 Alertes : <span id="alerts-count">0</span>
+        </div>
+    </header>
+
+    <main class="dashboard-grid">
+        <div class="content-main">
+            <!-- Vue Carte -->
+            <section class="content-section active" id="view-carte">
+                <div class="map-section">
+                    <div id="map-status" class="map-status hidden"></div>
+                    <div id="maCarte"></div>
+                </div>
+            </section>
+
+            <!-- Vue Évolution -->
+            <section class="content-section" id="view-evolution">
+                <div class="widget-container">
+                    <h3>📊 Évolution Temporelle</h3>
+                    <canvas id="monGraphiqueEvolution"></canvas>
+                </div>
+            </section>
+
+            <!-- Vue Prédiction -->
+            <section class="content-section" id="view-carbone">
+                <div class="widget-container">
+                    <h3>☁️ Dette Carbone</h3>
+                    <div id="compteur-carbone" class="counter">0</div>
+                    <p>Tonnes d'éq. CO2 générées</p>
+                </div>
+            </section>
+
+            <!-- Vue Impact -->
+            <section class="content-section" id="view-impact">
+                <div class="widget-container">
+                    <h3>⚽ Impact Concret</h3>
+                    <div id="compteur-impact" class="counter">0</div>
+                    <p>Terrains de football détruits</p>
+                </div>
+            </section>
+        </div>
+
+        <nav class="navbar">
+            <button class="nav-button active" data-view="carte">
+                🗺️ Carte 
+            </button>
+            <button class="nav-button" data-view="evolution">
+                📊 Évolution
+            </button>
+            <button class="nav-button" data-view="carbone">
+                ☁️ Prédiction
+            </button>
+            <button class="nav-button" data-view="impact">
+                ⚽ Impact
+            </button>
+        </nav>
+    </main>
+
+</body>
+</html>
