@@ -42,7 +42,6 @@ app.post('/api/alerts', async (req, res) => {
         if (!response.ok) throw new Error(`Erreur GFW : ${response.status}`);
         
         const data = await response.json();
-        console.log(`📊 ${data.data?.length || 0} alertes retournées par GFW`);
         res.json(data);
 
     } catch (error) {
