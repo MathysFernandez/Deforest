@@ -41,30 +41,22 @@ Le projet a pour objectif de :
 
 # 👥 Équipe
 
-| <a href="https://gitlab.univ-lr.fr/mferna08"> <img src="https://secure.gravatar.com/avatar/008c586d810a1f01fdaeed886b2c74ec16fbfa3019ffb91c8bfa6d9c16101572?s=1600&d=identicon" width="64" height="64"> </a> | **Nom :** Abbes Yris <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/yabbes) |
+| <a href="https://gitlab.univ-lr.fr/mferna08"> <img src="https://secure.gravatar.com/avatar/008c586d810a1f01fdaeed886b2c74ec16fbfa3019ffb91c8bfa6d9c16101572?s=1600&d=identicon" width="64" height="64"> </a> | **Nom :** Abbes Yris <br> **Rôle :** Gestionnaire serveur \| Designer UI/UX <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/yabbes) |
 |:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
 
-
-| <a href="https://gitlab.univ-lr.fr/mferna08"> <img src="https://secure.gravatar.com/avatar/2b24fb9d58a9c8913b0ed4cb0e434e44fdae33e07babbd772275ca3c8b7b1f24?s=1600&d=identicon" width="64" height="64"> </a> | **Nom :** Ratsimbazafy Harinavalona <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/hratsimb) |
+| <a href="https://gitlab.univ-lr.fr/mferna08"> <img src="https://secure.gravatar.com/avatar/2b24fb9d58a9c8913b0ed4cb0e434e44fdae33e07babbd772275ca3c8b7b1f24?s=1600&d=identicon" width="64" height="64"> </a> | **Nom :** Ratsimbazafy Harinavalona <br> **Rôle :** Data Visualisation \| Designer UI/UX <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/hratsimb) |
 |:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
 
-
-| <a href="https://gitlab.univ-lr.fr/mferna08"> <img src="https://gitlab.univ-lr.fr/uploads/-/system/user/avatar/2486/avatar.png?width=800" width="64" height="64"> </a> | **Nom :** Soilihi Timeo <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/tsoilihi) |
+| <a href="https://gitlab.univ-lr.fr/mferna08"> <img src="https://gitlab.univ-lr.fr/uploads/-/system/user/avatar/2486/avatar.png?width=800" width="64" height="64"> </a> | **Nom :** Soilihi Timeo <br> **Rôle :** Lead Developer \| Gestionnaire serveur <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/tsoilihi) |
 |:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
 
-
-| <a href="https://gitlab.univ-lr.fr/mferna08"> <img src="https://gitlab.univ-lr.fr/uploads/-/system/user/avatar/2469/avatar.png?width=800" width="64" height="64"> </a> | **Nom :** Fernandez Mathys <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/mferna08) |
+| <a href="https://gitlab.univ-lr.fr/mferna08"> <img src="https://gitlab.univ-lr.fr/uploads/-/system/user/avatar/2469/avatar.png?width=800" width="64" height="64"> </a> | **Nom :** Fernandez Mathys <br> **Rôle :** Chef de projet \| Gestionnaire API <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/mferna08) |
 |:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
 
-
-
-
-| <a href="https://gitlab.univ-lr.fr/mferna08"> <img src="https://secure.gravatar.com/avatar/388f07dab044217385f6f65e849931ffe3da2077c473d96363cd3563f9ee869f?s=1600&d=identicon" width="64" height="64"> </a> | **Nom :** Aballo Zaef <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/zaballo) |
+| <a href="https://gitlab.univ-lr.fr/mferna08"> <img src="https://secure.gravatar.com/avatar/388f07dab044217385f6f65e849931ffe3da2077c473d96363cd3563f9ee869f?s=1600&d=identicon" width="64" height="64"> </a> | **Nom :** Aballo Zaef <br> **Rôle :** Scrum Master \| Gestionnaire API \| Responsable Qualité/Tests <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/zaballo) |
 |:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
 
-
-
-| <a href="https://gitlab.univ-lr.fr/mferna08"> <img src="https://gitlab.univ-lr.fr/uploads/-/system/user/avatar/2480/avatar.png?width=800" width="64" height="64"> </a> | **Nom :** Zambrano Junior <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/jzambran) |
+| <a href="https://gitlab.univ-lr.fr/mferna08"> <img src="https://gitlab.univ-lr.fr/uploads/-/system/user/avatar/2480/avatar.png?width=800" width="64" height="64"> </a> | **Nom :** Zambrano Junior <br> **Rôle :** Designer UI/UX \| Spécialiste Cartographie <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/jzambran) |
 |:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
 
 
@@ -241,6 +233,17 @@ Le projet est géré avec :
 - Merge Requests
 - Milestones
 - Branches Git
+
+---
+
+---
+
+# 🤝 Contribution et Historique
+
+Pour comprendre comment participer au projet et suivre ses évolutions, consulter ces documents :
+
+- 📜 [**CONTRIBUTING.md**](./CONTRIBUTING.md) : Contient toutes les règles de nommage (branches, commits) et le processus de Merge Request pour contribuer proprement au projet.
+- ⏱️ [**CHANGELOG.md**](./CHANGELOG.md) : Historique détaillé des modifications, ajouts et corrections de bugs au fil des différentes versions.
 
 ---
 
