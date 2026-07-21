@@ -1,26 +1,27 @@
 # 🌳 Deforest
 
-Deforest est une application permettant de suivre et visualiser la déforestation mondiale grâce aux données fournies par l’API de Global Forest Watch (GFW).
+## 🚀 Installation
 
-Le projet a pour objectif de :
-- récupérer des données environnementales en temps réel,
-- analyser l’évolution de la déforestation,
-- afficher des statistiques et visualisations interactives,
-- sensibiliser aux enjeux environnementaux.
+1. Clone the project
+```bash
+git clone https://github.com/MathysFernandez/Deforest.git
+```
 
----
-
-# 📌 Fonctionnalités
-
-- 🔍 Récupération des données depuis l’API Global Forest Watch
-- 📊 Visualisation des zones touchées par la déforestation
-- 🗺️ Affichage cartographique interactif
-- 📈 Statistiques et graphiques
-- ⚡ Mise à jour dynamique des données
 
 ---
+# 📌 Features
 
-# 🛠️ Technologies utilisées
+- 🔍 Data retrieval from the Global Forest Watch API
+- 📊 Visualization of areas affected by deforestation
+- 🗺️ Interactive map display
+- 📈 Statistics and charts
+- ⚡ Dynamic data updates
+
+
+
+
+---
+# 🛠️ Technologies Used
 
 ## Frontend
 - HTML
@@ -33,8 +34,9 @@ Le projet a pour objectif de :
 ## API
 - Global Forest Watch API
 
-## Gestion de projet
+## Project Management
 - GitLab
+
 
 
 ---
