@@ -1,57 +1,56 @@
 <div align="center">
-    <h1>🌐 Documentation API - Deforest</h1>
+    <h1>🌐 API Documentation - Deforest</h1>
 </div>
 
-Ce document explique le fonctionnement de l’API utilisée dans le projet, la sécurisation des clés d’accès ainsi que la communication entre le frontend et le backend.
+This document explains how the API used in the project works, the securing of access keys, and the communication between the frontend and the backend.
 
 ---
 
-# 📌 Présentation
+# 📌 Overview
 
-Le projet utilise l’API officielle de **Global Forest Watch (GFW)** afin de récupérer des données de déforestation mondiale en temps réel.
+The project uses the official **Global Forest Watch (GFW)** API to retrieve global deforestation data in real-time.
 
-
-[Documentation officielle](https://data-api.globalforestwatch.org/)
+[Official Documentation](https://data-api.globalforestwatch.org/)
 
 ---
 
-# 🔐 Sécurisation des clés API
+# 🔐 Securing API Keys
 
-## Pourquoi sécuriser les clés ?
+## Why secure the keys?
 
-Au départ, les clés API étaient directement présentes dans le frontend JavaScript :
+Initially, the API keys were directly present in the JavaScript frontend:
 
 ```js
 const GFW_API_KEY = "...";
 const GFW_BEARER_TOKEN = "...";
 ```
 
-Cela posait un problème de sécurité car n’importe quel utilisateur pouvait voir les clés depuis le navigateur.
+This posed a security issue because any user could see the keys from the browser.
 
 ---
 
-# ✅ Nouvelle architecture sécurisée
+# ✅ New Secure Architecture
 
-Le frontend ne contacte plus directement Global Forest Watch.
+The frontend no longer contacts Global Forest Watch directly.
 
-Le système fonctionne maintenant ainsi :
+The system now works like this:
 
 ```txt
 Frontend → Backend Express.js → API Global Forest Watch
 ```
 
-Le backend :
-- stocke les clés API,
-- effectue les requêtes sécurisées,
-- renvoie uniquement les données nécessaires au frontend.
+The backend:
+- stores the API keys,
+- makes secure requests,
+- sends back only the necessary data to the frontend.
 
 ---
 
-# 📁 Variables d’environnement (.env)
+# 📁 Environment Variables (.env)
 
-Les informations sensibles sont stockées dans un fichier `.env` à placer dans le backend parcequ'il n'est pas placé par défaut.
+Sensitive information is stored in a .env file that must be placed in the backend because it is not included by default.
 
-Exemple :
+Example :
 
 ```env
 GFW_API_KEY=  <NOTRE_CLE_API> 
@@ -61,82 +60,80 @@ PORT=3000
 
 ---
 
-## ⚠️ Important pour tous les membres du projet
+## ⚠️ Important for all project members
 
-Le fichier `.env` n’est jamais envoyé sur GitLab pour des raisons de sécurité.
+The .env file is never pushed to GitLab for security reasons.
 
-Chaque utilisateur qui clone le projet doit :
-1. récupérer le fichier `.env`,
-2. le placer dans le dossier `backend/`,
-3. utiliser ses propres clés API si nécessaire.
+Each user who clones the project must:
+- retrieve the `.env` file,
+- place it in the `backend/` directory,
+- use their own API keys if necessary.
 
-> [!warning] Sans le fichier `.env`, le backend ne peut pas démarrer correctement et les requêtes API échouent.    
+> **WARNING** Without the .env file, the backend cannot start properly and API requests will fail.
 
 ---
 
-# 🚫 Protection Git
+# 🚫 Git Protection
 
-Le fichier `.env` est ignoré grâce au `.gitignore`.
+The `.env` file is ignored thanks to the `.gitignore`.
 
 ```gitignore
 backend/.env
 node_modules/
 ```
 
-Cela évite de publier les clés sensibles sur GitLab.
+This prevents publishing sensitive keys on GitLab.
 
 ---
 
-# ⚙️ Installation du backend
+# ⚙️ Backend Installation
 
-Le backend utilise **Node.js** et **Express.js**.
+The backend uses Node.js and Express.js.
 
-Chaque utilisateur doit installer les dépendances du projet après avoir cloné le dépôt Git.
-
----
-
-# 📦 Installer Node.js
-
-Node.js est nécessaire pour lancer le serveur backend.
-
-Téléchargement officiel :
-
-https://nodejs.org/
+Each user must install the project dependencies after cloning the Git repository.
 
 ---
 
-# 🪟 Installation sous Windows
+# 📦 Install Node.js
 
-## 1. Télécharger Node.js
+Node.js is required to start the backend server.
 
-Télécharger l’installateur depuis :
-
-https://nodejs.org/
-
-Choisir la version **LTS** recommandée.
+[Official download](https://nodejs.org/)
 
 ---
 
-## 2. Installer Node.js
+# 🪟 Installation on Windows
 
-Lancer l’installateur `.msi` puis :
-- cliquer sur *NEXT*,
-- accepter les conditions,
-- laisser les options par défaut,
-- terminer l’installation.
+## 1. Download Node.js
+
+Download the installer from:
+
+[this](https://nodejs.org/)
+
+> Choose the recommended LTS version.
 
 ---
 
-## 3. Vérifier l’installation
+## 2. Install Node.js
 
-Ouvrir un terminal PowerShell ou CMD :
+Run the .msi installer then:
+- click on NEXT,
+- accept the terms and conditions,
+- leave the default options,
+- finish the installation.
+
+---
+
+## 3. Verify the installation
+
+Open a PowerShell or CMD terminal:
 
 ```bash
 node -v
 npm -v
 ```
 
-Les versions installées doivent apparaître dans le terminal.
+The installed versions should appear in the terminal.
 
 ---
 
