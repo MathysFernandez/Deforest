@@ -9,7 +9,7 @@ git clone https://github.com/MathysFernandez/Deforest.git
 
 
 ---
-# 📌 Features
+## 📌 Features
 
 - 🔍 Data retrieval from the Global Forest Watch API
 - 📊 Visualization of areas affected by deforestation
@@ -21,7 +21,7 @@ git clone https://github.com/MathysFernandez/Deforest.git
 
 
 ---
-# 🛠️ Technologies Used
+## 🛠️ Technologies Used
 
 ## Frontend
 - HTML
@@ -32,16 +32,19 @@ git clone https://github.com/MathysFernandez/Deforest.git
 - JavaScript
 
 ## API
-- Global Forest Watch API
+> The project uses the official Global Forest Watch API.
 
-## Project Management
+### Official Documentation
+https://data-api.globalforestwatch.org/
+
+### Project Management
 - GitLab
 
 
 
 ---
 
-# 👥 Team
+## 👥 Team
 
 | <a href="https://gitlab.univ-lr.fr/yabbes"> <img src="https://secure.gravatar.com/avatar/008c586d810a1f01fdaeed886b2c74ec16fbfa3019ffb91c8bfa6d9c16101572?s=1600&d=identicon" width="64" height="64"> </a> | **Nom :** Abbes Yris <br> **Rôle :** Gestionnaire serveur \| Designer UI/UX <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/yabbes) |
 |:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
@@ -55,41 +58,31 @@ git clone https://github.com/MathysFernandez/Deforest.git
 | <a href="https://github.com/MathysFernandez"> <img src="https://avatars.githubusercontent.com/u/90396790?s=96&v=4?width=800" width="64" height="64"> </a> | **Nom :** Fernandez Mathys <br> **Rôle :** Chef de projet \| Gestionnaire API <br> **GitLab :** [mon profil](https://github.com/MathysFernandez) |
 |:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
 
-| <a href="https://gitlab.univ-lr.fr/mferna08"> <img src="https://secure.gravatar.com/avatar/388f07dab044217385f6f65e849931ffe3da2077c473d96363cd3563f9ee869f?s=1600&d=identicon" width="64" height="64"> </a> | **Nom :** Aballo Zaef <br> **Rôle :** Scrum Master \| Gestionnaire API \| Responsable Qualité/Tests <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/zaballo) |
+| <a href="https://gitlab.univ-lr.fr/zaballo"> <img src="https://secure.gravatar.com/avatar/388f07dab044217385f6f65e849931ffe3da2077c473d96363cd3563f9ee869f?s=1600&d=identicon" width="64" height="64"> </a> | **Nom :** Aballo Zaef <br> **Rôle :** Scrum Master \| Gestionnaire API \| Responsable Qualité/Tests <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/zaballo) |
 |:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
 
-| <a href="https://gitlab.univ-lr.fr/mferna08"> <img src="https://gitlab.univ-lr.fr/uploads/-/system/user/avatar/2480/avatar.png?width=800" width="64" height="64"> </a> | **Nom :** Zambrano Junior <br> **Rôle :** Designer UI/UX \| Spécialiste Cartographie <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/jzambran) |
+| <a href="https://gitlab.univ-lr.fr/jzambran"> <img src="https://gitlab.univ-lr.fr/uploads/-/system/user/avatar/2480/avatar.png?width=800" width="64" height="64"> </a> | **Nom :** Zambrano Junior <br> **Rôle :** Designer UI/UX \| Spécialiste Cartographie <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/jzambran) |
 |:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
-
-
----
-
-# 🌐 API utilisée
-
-Le projet utilise l’API officielle de Global Forest Watch.
-
-## Documentation officielle
-https://data-api.globalforestwatch.org/
 
 
 
 ---
 
-# 📂 Structure du projet
+## 📂 Structure du projet
 
 ```bash
 deforest/
 │
-├── frontend/             # Interface utilisateur
+├── frontend/             # UI
 │   ├── components/
 │   ├── core/
 │   ├── assets/
 │   ├── documentation/
 │   └── index.html
 │
-├── backend/               # Serveur backend
+├── backend/               # Backend erveur 
 │   ├── node_modules/
-│   ├── .env           # Variables d’environnement
+│   ├── .env           # Environment variables 
 │   ├── package-lock.json
 │   └── package.json
 │
@@ -102,30 +95,30 @@ deforest/
 
 ---
 
-# 🚀 Installation
+## 🚀 Installation
 
-## 1. Cloner le projet
+### 1. Clone the projet
 
 ```bash
 git clone git@gitlab.univ-lr.fr:pingouins/deforest.git
 ```
 
-## 2. Accéder au dossier
+### 2. Access the directory
 
 ```bash
 cd deforest/backend
 ```
 
-## 3. Sous Linux:
+### 3. On Linux:
 
 
-## 3.1 Installation des dépendances
+#### 3.1 Install dependencies
 
 ```bash
 npm install
 ```
 
-## 3.2 Si Node.js et npm ne sont pas installés 
+#### 3.2 If Node.js and npm are not installed
 
 ```bash
 sudo apt update
@@ -133,32 +126,31 @@ sudo apt install nodejs npm
 npm --version
 ```
 
-## 3.2 Configuration de l'environnement (.env)
+### 3.3 Environment Configuration (.env)
 
 ```bash
 node server.js
 ```
 
-## 4. Sous Windows:
+### 4. On Windows:
 
-## 4.1 Installation des dépendances
+#### 4.1 Install dependencies
 
 ```bash
 npm install
 ```
 
-## 4.2 Si Node.js et npm ne sont pas installés 
+#### 4.2 If Node.js and npm are not installed
 
-> Ligne de commande: 
 ```bash
 winget install OpenJS.NodeJS.LTS
 ```
 
 
 
-## 5 Configuration de l'environnement (.env)
-Créez un fichier nommé .env à la racine du dossier backend.
-Vous devez générer une clé pour l'API Global Forest Watch (GFW) depuis le terminal et l'insérer dans ce fichier de la manière suivante :
+### 5 Environment Configuration (.env)
+Create a file named .env in the root of the backend directory.    
+You must generate a key for the Global Forest Watch (GFW) API from the terminal and insert it into this file as follows:   
 
 ```bash
 GFW_API_KEY= <votre cle>
@@ -166,7 +158,7 @@ GFW_BEARER_TOKEN= <votre token>
 PORT=3000
 ```
 
-## 6 Lancer le projet
+### 6 Run the project
 
 
 ```bash
@@ -174,107 +166,60 @@ node server.js
 ```
 
 
-
-
-
 ---
 
-# 🖥️ Utilisation du Serveur (Déploiement Rapide)
+# 📅 Project Organization
 
-Le frontend du projet est accessible en interne via un serveur web Apache (IP : ```192.168.110.132```).
-
-## 1. Se connecter au serveur
-
-Ajoutez la route réseau (si vous êtes sur un PC personnel à l'université) puis connectez-vous en SSH :
-
-```bash
-sudo ip route add 192.168.110.0/24 via 10.192.12.11
-ssh omer@192.168.110.132
-```
-(Mot de passe : simpsons)
-
-## 2. Publier une mise à jour
-
-Après avoir codé et sauvegardé vos modifications (idéalement via VS Code avec l'extension Remote - SSH), déployez-les en direct sur le serveur Apache avec cette commande :
-
-```bash
-sudo cp -r ~/deforest/frontend/* /var/www/html/
-```
-
-Le site est ensuite visible par tous sur le réseau à l'adresse :
-
-http://192.168.110.132
-
-
----
-
-# 🔄 Workflow Git
-
-## Convention des branches
-
-```bash
-feature/nom-feature
-fix/nom-fix
-docs/readme
-```
-
-## Exemple
-
-```bash
-feature/api-gfw
-feature/frontend-map
-feature/backend-server
-```
-
----
-
-# 📅 Organisation du projet
-
-Le projet est géré avec :
+The project is managed with:
 - GitLab Issues
 - Merge Requests
 - Milestones
-- Branches Git
+- Git Branches
 
 ---
 
 ---
 
-# 🤝 Contribution et Historique
+# 🤝 Contribution and History
 
-Pour comprendre comment participer au projet et suivre ses évolutions, consulter ces documents :
+To understand how to participate in the project and track its progress, refer to these documents:
 
-- 📜 [**CONTRIBUTING.md**](./CONTRIBUTING.md) : Contient toutes les règles de nommage (branches, commits) et le processus de Merge Request pour contribuer proprement au projet.
-- ⏱️ [**CHANGELOG.md**](./CHANGELOG.md) : Historique détaillé des modifications, ajouts et corrections de bugs au fil des différentes versions.
+- 📜 [**CONTRIBUTING.md**](./CONTRIBUTING.md) :
+  Contains all naming conventions (branches, commits) and the Merge Request process to properly contribute to the project.
 
+- ⏱️ [**CHANGELOG.md**](./CHANGELOG.md) :
+  Detailed history of modifications, additions, and bug fixes across different versions.
+
+
+
+  
 ---
 
 # 📖 Documentation
 
-Toute la documentation technique sera ajoutée dans le dossier :
+All technical documentation will be added to the directory :
 
 ```bash
-/docs
+/documentations
 ```
 
 ---
 
-# 🌍 Objectif environnemental
+# 🌍 Environmental Goal
 
-Ce projet vise à mieux comprendre et visualiser l’impact de la déforestation mondiale grâce aux données ouvertes et à la technologie.
+This project aims to better understand and visualize the impact of global deforestation through open data and technology.
 
 ---
 
 # 📜 Licence
 
-Projet universitaire — Licence MIT
+University Project — MIT License
 
 ---
 
-# ✨ Améliorations futures
-
-- Carte interactive en temps réel
-- Graphiques avancés
-- Export des données
-- Alertes sur les zones critiques
-- Tableau de bord analytique
+# ✨ Future Improvements
+- Real-time interactive map
+- Advanced charts
+- Data export
+- Alerts on critical areas
+- Analytical dashboard
