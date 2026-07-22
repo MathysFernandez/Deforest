@@ -1,6 +1,11 @@
 # 🌳 Deforest
 
-## 🚀 Installation
+> The objective of this project is to develop an interactive web platform dedicated to the monitoring and analysis of forest ecosystems. Powered by the Global Forest Watch (GFW) API, the application utilizes historical and real-time environmental data. It offers a dual analytical approach: an interactive map for targeted spatial exploration, coupled with a statistical dashboard featuring detailed charts
+
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/8bdb32b9-3706-47a8-91db-026826f69704" />
+
+
+## 🚀 Project Installation
 
 1. Clone the project
 ```bash
