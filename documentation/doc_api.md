@@ -6,7 +6,7 @@ This document explains how the API used in the project works, the securing of ac
 
 ---
 
-# 📌 Overview
+## 📌 Overview
 
 The project uses the official **Global Forest Watch (GFW)** API to retrieve global deforestation data in real-time.
 
@@ -14,7 +14,7 @@ The project uses the official **Global Forest Watch (GFW)** API to retrieve glob
 
 ---
 
-# 🔐 Securing API Keys
+## 🔐 Securing API Keys
 
 ## Why secure the keys?
 
@@ -29,7 +29,7 @@ This posed a security issue because any user could see the keys from the browser
 
 ---
 
-# ✅ New Secure Architecture
+## ✅ New Secure Architecture
 
 The frontend no longer contacts Global Forest Watch directly.
 
@@ -46,9 +46,9 @@ The backend:
 
 ---
 
-# 📁 Environment Variables (.env)
+## 📁 Environment Variables (.env)
 
-Sensitive information is stored in a .env file that must be placed in the backend because it is not included by default.
+Sensitive information is stored in a `.env` file that must be placed in the backend because it is not included by default.
 
 Example :
 
@@ -73,7 +73,7 @@ Each user who clones the project must:
 
 ---
 
-# 🚫 Git Protection
+## 🚫 Git Protection
 
 The `.env` file is ignored thanks to the `.gitignore`.
 
@@ -86,15 +86,15 @@ This prevents publishing sensitive keys on GitLab.
 
 ---
 
-# ⚙️ Backend Installation
+## ⚙️ Backend Installation
 
-The backend uses Node.js and Express.js.
+The backend uses **Node.js** and **Express.js**.
 
 Each user must install the project dependencies after cloning the Git repository.
 
 ---
 
-# 📦 Install Node.js
+## 📦 Install Node.js
 
 Node.js is required to start the backend server.
 
@@ -102,9 +102,9 @@ Node.js is required to start the backend server.
 
 ---
 
-# 🪟 Installation on Windows
+## 🪟 Installation on Windows
 
-## 1. Download Node.js
+### 1. Download Node.js
 
 Download the installer from:
 
@@ -114,7 +114,7 @@ Download the installer from:
 
 ---
 
-## 2. Install Node.js
+### 2. Install Node.js
 
 Run the .msi installer then:
 - click on NEXT,
@@ -124,7 +124,7 @@ Run the .msi installer then:
 
 ---
 
-## 3. Verify the installation
+### 3. Verify the installation
 
 Open a PowerShell or CMD terminal:
 
@@ -137,9 +137,9 @@ The installed versions should appear in the terminal.
 
 ---
 
-# 🐧 Installation sous Linux (Ubuntu)
+## 🐧 Installation on Linux (Ubuntu)
 
-## 1. Installer npm et Node.js
+### 1. Install npm and Node.js
 
 ```bash
 sudo apt update
@@ -148,20 +148,20 @@ sudo apt install npm
 
 ---
 
-## 2. Vérifier l’installation
+### 2. Verify the installation
 
 ```bash
 npm --version
 node -v
 ```
 
-> Les versions installées doivent apparaître dans le terminal.    
+> The installed versions should appear in the terminal.  
 
 ---
 
-# 📥 Installation des dépendances du projet
+## 📥 Installation of Project Dependencies
 
-## 1. Aller dans le dossier backend
+### 1. Go to the backend directory
 
 ```bash
 cd backend
@@ -169,41 +169,42 @@ cd backend
 
 ---
 
-## 2. Installer les dépendances
+### 2. Install dependencies
 
 ```bash
 npm install
 ```
 
-Cette commande :
-- télécharge automatiquement les bibliothèques nécessaires,
-- crée le dossier `node_modules/`,
-- installe Express, dotenv et les autres dépendances.
+This command:
+- automatically downloads the necessary libraries,
+- creates the `node_modules/` directory,
+- installs Express, dotenv, and the other dependencies.
 
 ---
 
-# 📁 Pourquoi node_modules n’est pas envoyé sur GitLab ?
+## 📁 Why is node_modules not pushed to GitLab?
 
-Le dossier `node_modules/` peut être recréé automatiquement grâce à :
+The `node_modules/` directory can be automatically recreated using:
 
 ```bash
 npm install
 ```
 
-Il est donc ignoré dans le `.gitignore`.
+It is therefore ignored in the `.gitignore`.
 
-Cela permet :
-- d’éviter des fichiers trop lourds sur GitLab,
-- de garder un projet propre,
-- d’assurer que chaque utilisateur installe les bonnes versions.
+This allows:
+- avoiding overly large files on GitLab,
+- keeping the project clean,
+- ensuring that each user installs the correct versions.
 
 
-# 🚀 Lancer le serveur
 
-> [!tip] Une fois le fichier `.env` configuré et les dépendances installées, lancez le serveur avec :   
+## 🚀 Start the server
+
+Once the `.env` file is configured and the dependencies are installed, start the server with:   
 
 ```bash
 node server.js
 ```
 
-Le terminal devrait afficher: Serveur lancé sur le port 3000. 
+> The terminal should display: Server started on port 3000.
