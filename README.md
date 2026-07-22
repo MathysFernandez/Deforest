@@ -1,6 +1,6 @@
 # 🌳 Deforest
 
-## 🚀 Installation
+## 🚀 Installation
 
 1. Clone the project
 ```bash
