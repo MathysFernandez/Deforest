@@ -46,23 +46,25 @@ https://data-api.globalforestwatch.org/
 
 ## 👥 Team
 
-| <a href="https://gitlab.univ-lr.fr/yabbes"> <img src="https://secure.gravatar.com/avatar/008c586d810a1f01fdaeed886b2c74ec16fbfa3019ffb91c8bfa6d9c16101572?s=1600&d=identicon" width="64" height="64"> </a> | **Nom :** Abbes Yris <br> **Rôle :** Gestionnaire serveur \| Designer UI/UX <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/yabbes) |
-|:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
-
-| <a href="https://github.com/nav-ratsimba"> <img src="https://secure.gravatar.com/avatar/2b24fb9d58a9c8913b0ed4cb0e434e44fdae33e07babbd772275ca3c8b7b1f24?s=1600&d=identicon" width="64" height="64"> </a> | **Nom :** Ratsimbazafy Harinavalona <br> **Rôle :** Data Visualisation \| Designer UI/UX <br> **GitLab :** [mon profil](https://github.com/nav-ratsimba) |
+| <a href="https://github.com/MathysFernandez"> <img src="https://avatars.githubusercontent.com/u/90396790?s=96&v=4?width=800" width="64" height="64"> </a> | **Nom :** Fernandez Mathys <br> **Rôle :** Chef de projet \| Gestionnaire API <br> **GitLab :** [mon profil](https://github.com/MathysFernandez) |
 |:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
 
 | <a href="https://gitlab.univ-lr.fr/tsoilihi"> <img src="https://gitlab.univ-lr.fr/uploads/-/system/user/avatar/2486/avatar.png?width=800" width="64" height="64"> </a> | **Nom :** Soilihi Timeo <br> **Rôle :** Lead Developer \| Gestionnaire serveur <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/tsoilihi) |
 |:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
 
-| <a href="https://github.com/MathysFernandez"> <img src="https://avatars.githubusercontent.com/u/90396790?s=96&v=4?width=800" width="64" height="64"> </a> | **Nom :** Fernandez Mathys <br> **Rôle :** Chef de projet \| Gestionnaire API <br> **GitLab :** [mon profil](https://github.com/MathysFernandez) |
+| <a href="https://github.com/nav-ratsimba"> <img src="https://secure.gravatar.com/avatar/2b24fb9d58a9c8913b0ed4cb0e434e44fdae33e07babbd772275ca3c8b7b1f24?s=1600&d=identicon" width="64" height="64"> </a> | **Nom :** Ratsimbazafy Harinavalona <br> **Rôle :** Data Visualisation \| Designer UI/UX <br> **GitLab :** [mon profil](https://github.com/nav-ratsimba) |
+|:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
+
+| <a href="https://gitlab.univ-lr.fr/jzambran"> <img src="https://gitlab.univ-lr.fr/uploads/-/system/user/avatar/2480/avatar.png?width=800" width="64" height="64"> </a> | **Nom :** Zambrano Junior <br> **Rôle :** Designer UI/UX \| Spécialiste Cartographie <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/jzambran) |
+|:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
+
+
+| <a href="https://gitlab.univ-lr.fr/yabbes"> <img src="https://secure.gravatar.com/avatar/008c586d810a1f01fdaeed886b2c74ec16fbfa3019ffb91c8bfa6d9c16101572?s=1600&d=identicon" width="64" height="64"> </a> | **Nom :** Abbes Yris <br> **Rôle :** Gestionnaire serveur \| Designer UI/UX <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/yabbes) |
 |:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
 
 | <a href="https://gitlab.univ-lr.fr/zaballo"> <img src="https://secure.gravatar.com/avatar/388f07dab044217385f6f65e849931ffe3da2077c473d96363cd3563f9ee869f?s=1600&d=identicon" width="64" height="64"> </a> | **Nom :** Aballo Zaef <br> **Rôle :** Scrum Master \| Gestionnaire API \| Responsable Qualité/Tests <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/zaballo) |
 |:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
 
-| <a href="https://gitlab.univ-lr.fr/jzambran"> <img src="https://gitlab.univ-lr.fr/uploads/-/system/user/avatar/2480/avatar.png?width=800" width="64" height="64"> </a> | **Nom :** Zambrano Junior <br> **Rôle :** Designer UI/UX \| Spécialiste Cartographie <br> **GitLab :** [mon profil](https://gitlab.univ-lr.fr/jzambran) |
-|:----------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
 
 
 
@@ -168,7 +170,7 @@ node server.js
 
 ---
 
-# 📅 Project Organization
+## 📅 Project Organization
 
 The project is managed with:
 - GitLab Issues
@@ -180,7 +182,7 @@ The project is managed with:
 
 ---
 
-# 🤝 Contribution and History
+## 🤝 Contribution and History
 
 To understand how to participate in the project and track its progress, refer to these documents:
 
@@ -195,7 +197,7 @@ To understand how to participate in the project and track its progress, refer to
   
 ---
 
-# 📖 Documentation
+## 📖 Documentation
 
 All technical documentation will be added to the directory :
 
@@ -205,19 +207,19 @@ All technical documentation will be added to the directory :
 
 ---
 
-# 🌍 Environmental Goal
+## 🌍 Environmental Goal
 
 This project aims to better understand and visualize the impact of global deforestation through open data and technology.
 
 ---
 
-# 📜 Licence
+## 📜 Licence
 
 University Project — MIT License
 
 ---
 
-# ✨ Future Improvements
+## ✨ Future Improvements
 - Real-time interactive map
 - Advanced charts
 - Data export
